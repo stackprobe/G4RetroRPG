@@ -3,7 +3,7 @@
 void ProcMain(void)
 {
 #if !LOG_ENABLED
-	Test0001();
+	TitleMain();
 #elif 1 // test
 	Test0001();
 #elif 1 // test

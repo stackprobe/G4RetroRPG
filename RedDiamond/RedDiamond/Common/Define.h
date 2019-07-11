@@ -74,8 +74,8 @@ typedef unsigned __int64 uint64;
 
 // app > @ define SCREEN_WH
 
-#define SCREEN_W 800
-#define SCREEN_H 600
+#define SCREEN_W 960
+#define SCREEN_H 480
 
 // < app
 

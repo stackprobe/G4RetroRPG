@@ -9,6 +9,8 @@ enum
 
 	// app > @ P_
 
+	P_LOGO,
+
 	// < app
 
 	P_MAX, // num of member
