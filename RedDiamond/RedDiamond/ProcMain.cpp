@@ -5,7 +5,7 @@ void ProcMain(void)
 #if !LOG_ENABLED
 	TitleMain();
 #elif 1 // test
-	Test0001();
+	TitleMain();
 #elif 1 // test
 	Test0001();
 #else // test
