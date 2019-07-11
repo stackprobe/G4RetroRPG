@@ -30,7 +30,7 @@
 
 // app > @ define LOG_ENABLED
 
-/*
+//*
 #define LOG_ENABLED 0
 /*/
 #define LOG_ENABLED 1
@@ -74,8 +74,8 @@ typedef unsigned __int64 uint64;
 
 // app > @ define SCREEN_WH
 
-#define SCREEN_W 960
-#define SCREEN_H 480
+#define SCREEN_W 800
+#define SCREEN_H 600
 
 // < app
 

@@ -3,9 +3,9 @@
 void ProcMain(void)
 {
 #if !LOG_ENABLED
-	TitleMain();
+	Test0001();
 #elif 1 // test
-	TitleMain();
+	Test0001();
 #elif 1 // test
 	Test0001();
 #else // test

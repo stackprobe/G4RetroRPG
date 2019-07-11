@@ -66,9 +66,7 @@ void Gnd_INIT(void)
 
 	// app > @ Gnd_INIT SaveData
 
-	// memo: ƒŠƒrƒ‹ƒh‚·‚é‚Æ SaveData.dat ‚Í–³‹(íœ)‚³‚ê‚éB
-
-	Gnd.RO_MouseDispMode = 1;
+	Gnd.RO_MouseDispMode = 0;
 
 	// < app
 }

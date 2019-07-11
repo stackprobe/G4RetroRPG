@@ -9,13 +9,6 @@ enum
 
 	// app > @ P_
 
-	P_LOGO,
-	P_TITLE_WALL,
-	P_TITLE,
-	P_TITLE_BTN_START,
-	P_TITLE_BTN_CONFIG,
-	P_TITLE_BTN_EXIT,
-
 	// < app
 
 	P_MAX, // num of member

@@ -3,5 +3,4 @@
 #include "Common\all.h"
 
 #include "ProcMain.h"
-#include "Title.h"
-#include "Scenario.h"
+#include "Test0001.h"
