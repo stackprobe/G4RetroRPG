@@ -51,20 +51,19 @@ void TitleMain(void)
 	}
 	sceneLeave();
 
-	const int TITLE_Y_ADD = -50;
-	const int TITLE_BACK_W = SCREEN_W;
-	const int TITLE_BACK_H = 100;
-	const int TITLE_BACK_L = 0;
-	const int TITLE_BACK_T = (SCREEN_H - TITLE_BACK_H) / 2 + TITLE_Y_ADD;
+	const int TITLE_BACK_W = 410;
+	const int TITLE_BACK_H = SCREEN_H;
+	const int TITLE_BACK_L = (SCREEN_W - TITLE_BACK_W) / 2;
+	const int TITLE_BACK_T = 0;
 	const double TITLE_BACK_A = 0.5;
 
-	const int TITLE_BTN_START_X = 150;
-	const int TITLE_BTN_START_Y = 400;
+	const int TITLE_BTN_START_X = 130;
+	const int TITLE_BTN_START_Y = 410;
 
-	const int TITLE_BTN_CONFIG_X = 550;
-	const int TITLE_BTN_CONFIG_Y = 410;
+	const int TITLE_BTN_CONFIG_X = 830;
+	const int TITLE_BTN_CONFIG_Y = 70;
 
-	const int TITLE_BTN_EXIT_X = 800;
+	const int TITLE_BTN_EXIT_X = 830;
 	const int TITLE_BTN_EXIT_Y = 410;
 
 	{
@@ -72,6 +71,7 @@ void TitleMain(void)
 		double z = 1.3;
 		int titleBackOn = 0;
 		double titleBackA = 0.0;
+		double titleBackZ = 0.1;
 		int titleOn = 0;
 		double titleA = 0.0;
 		double titleZ = 1.3;
@@ -79,7 +79,7 @@ void TitleMain(void)
 		double titleBtnsA[3] = { 0 };
 		double titleBtnsZ[3] = { 1.05, 1.1, 1.15 };
 
-		forscene(180)
+		forscene(120)
 		{
 			if(sc_numer == 30)
 				titleBackOn = 1;
@@ -106,11 +106,13 @@ void TitleMain(void)
 
 			DPE_SetAlpha(titleBackA);
 			DPE_SetBright(GetColor(0, 0, 0));
-			DrawRect(P_WHITEBOX, TITLE_BACK_L, TITLE_BACK_T, TITLE_BACK_W, TITLE_BACK_H);
+			DrawBeginRect(P_WHITEBOX, TITLE_BACK_L, TITLE_BACK_T, TITLE_BACK_W, TITLE_BACK_H);
+			DrawZoom_X(titleBackZ);
+			DrawEnd();
 			DPE_Reset();
 
 			DPE_SetAlpha(titleA);
-			DrawBegin(P_TITLE, SCREEN_W / 2, SCREEN_H / 2 + TITLE_Y_ADD);
+			DrawBegin(P_TITLE, SCREEN_W / 2, SCREEN_H / 2);
 			DrawZoom(titleZ);
 			DrawEnd();
 			DPE_Reset();
@@ -134,11 +136,13 @@ void TitleMain(void)
 			DPE_Reset();
 
 			m_approach(a, 1.0, 0.97);
-			m_approach(z, 1.0, 0.96);
+			m_approach(z, 1.0, 0.95);
 
 			if(titleBackOn)
+			{
 				m_approach(titleBackA, TITLE_BACK_A, 0.95);
-
+				m_approach(titleBackZ, 1.0, 0.9);
+			}
 			if(titleOn)
 			{
 				m_approach(titleA, 1.0, 0.93);
@@ -156,21 +160,69 @@ void TitleMain(void)
 		}
 	}
 
-	for(; ; )
+	{
+		double selRateStart = 0.0;
+		double selRateConfig = 0.0;
+		double selRateExit = 0.0;
+		int selStart = 0;
+		int selConfig = 0;
+		int selExit = 0;
+
+		for(; ; )
+		{
+			UpdateMousePos();
+
+			if(selStart = GetDistance(TITLE_BTN_START_X, TITLE_BTN_START_Y, MouseX, MouseY) < 100.0)
+				m_approach(selRateStart, 1.0, 0.8);
+			else
+				m_approach(selRateStart, 0.0, 0.9);
+
+			if(selConfig = GetDistance(TITLE_BTN_CONFIG_X, TITLE_BTN_CONFIG_Y, MouseX, MouseY) < 90.0)
+				m_approach(selRateConfig, 1.0, 0.85);
+			else
+				m_approach(selRateConfig, 0.0, 0.93);
+
+			if(selExit = GetDistance(TITLE_BTN_EXIT_X, TITLE_BTN_EXIT_Y, MouseX, MouseY) < 90.0)
+				m_approach(selRateExit, 1.0, 0.85);
+			else
+				m_approach(selRateExit, 0.0, 0.93);
+
+			if(GetMouInput(MOUBTN_L) == 1)
+			{
+				if(selExit)
+					break;
+			}
+
+			DrawSimple(P_TITLE_WALL, 0, 0);
+
+			DPE_SetAlpha(TITLE_BACK_A);
+			DPE_SetBright(GetColor(0, 0, 0));
+			DrawRect(P_WHITEBOX, TITLE_BACK_L, TITLE_BACK_T, TITLE_BACK_W, TITLE_BACK_H);
+			DPE_Reset();
+
+			DrawCenter(P_TITLE, SCREEN_W / 2, SCREEN_H / 2);
+
+			DrawBegin(P_TITLE_BTN_START, TITLE_BTN_START_X, TITLE_BTN_START_Y);
+			DrawZoom(1.0 + selRateStart * 0.2);
+			DrawEnd();
+			DrawBegin(P_TITLE_BTN_CONFIG, TITLE_BTN_CONFIG_X, TITLE_BTN_CONFIG_Y);
+			DrawZoom(1.0 + selRateConfig * 0.15);
+			DrawEnd();
+			DrawBegin(P_TITLE_BTN_EXIT, TITLE_BTN_EXIT_X, TITLE_BTN_EXIT_Y);
+			DrawZoom(1.0 + selRateExit * 0.15);
+			DrawEnd();
+
+			EachFrame();
+		}
+	}
+
+	SetCurtain(30, -1.0);
+	MusicFade();
+
+	forscene(40)
 	{
 		DrawSimple(P_TITLE_WALL, 0, 0);
-
-		DPE_SetAlpha(TITLE_BACK_A);
-		DPE_SetBright(GetColor(0, 0, 0));
-		DrawRect(P_WHITEBOX, TITLE_BACK_L, TITLE_BACK_T, TITLE_BACK_W, TITLE_BACK_H);
-		DPE_Reset();
-
-		DrawCenter(P_TITLE, SCREEN_W / 2, SCREEN_H / 2 + TITLE_Y_ADD);
-
-		DrawCenter(P_TITLE_BTN_START, TITLE_BTN_START_X, TITLE_BTN_START_Y);
-		DrawCenter(P_TITLE_BTN_CONFIG, TITLE_BTN_CONFIG_X, TITLE_BTN_CONFIG_Y);
-		DrawCenter(P_TITLE_BTN_EXIT, TITLE_BTN_EXIT_X, TITLE_BTN_EXIT_Y);
-
 		EachFrame();
 	}
+	sceneLeave();
 }

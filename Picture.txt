@@ -7,3 +7,6 @@ Resource\Title\Title.png
 Resource\Title\TitleBtnStart.png
 Resource\Title\TitleBtnConfig.png
 Resource\Title\TitleBtnExit.png
+Resource\Title\TitleBtnBack.png
+Resource\Title\TitleItemStart.png
+Resource\Title\TitleItemContinue.png
