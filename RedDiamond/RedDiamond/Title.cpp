@@ -3,6 +3,8 @@
 static SubScreen_t *WorkScreen;
 static double WallBokashiRate = 1.0;
 static double WallBokashiRateDest = 1.0;
+static double WallZRate = 1.0;
+static double WallZRateDest = 1.0;
 
 #define TITLE_BACK_W 410
 #define TITLE_BACK_H SCREEN_H
@@ -16,12 +18,16 @@ static double P_TitleBackWDest = TITLE_BACK_W;
 static void DrawWall(void)
 {
 	m_approach(WallBokashiRate, WallBokashiRateDest, 0.93);
+	m_approach(WallZRate, WallZRateDest, 0.9);
 
 	// ---
 
 	SetDrawScreen(GetHandle(WorkScreen));
-	DrawSimple(P_TITLE_WALL, 0, 0);
-	GraphFilter(GetHandle(WorkScreen), DX_GRAPH_FILTER_GAUSS, 16, d2i(WallBokashiRate * 1000.0));
+	DrawBegin(P_TITLE_WALL, SCREEN_CENTER_X, SCREEN_CENTER_Y);
+	DrawZoom(WallZRate);
+	DrawEnd();
+	GraphFilter(GetHandle(WorkScreen), DX_GRAPH_FILTER_GAUSS, 16, d2i(WallBokashiRate * 1000.0)); // 1
+	GraphFilter(GetHandle(WorkScreen), DX_GRAPH_FILTER_GAUSS, 16, d2i(WallBokashiRate * 1000.0)); // 2
 	RestoreDrawScreen();
 
 	DPE_SetGraphicSize(makeI2D(SCREEN_W, SCREEN_H));
@@ -201,6 +207,7 @@ static void TitleConfig(void)
 static void TitleGameStart2(void)
 {
 	WallBokashiRateDest = 0.0;
+	WallZRateDest = 1.02;
 	P_TitleBackWDest = 0;
 
 	const int TGS_BACK_X = 830;
@@ -323,6 +330,7 @@ returned:
 	FreezeInput();
 
 	WallBokashiRateDest = 1.0;
+	WallZRateDest = 1.0;
 	P_TitleBackWDest = 450;
 
 	for(; ; )
@@ -520,7 +528,8 @@ void TitleMain(void)
 			DrawEnd();
 			DPE_Reset();
 
-			GraphFilter(GetHandle(WorkScreen), DX_GRAPH_FILTER_GAUSS, 16, 1000);
+			GraphFilter(GetHandle(WorkScreen), DX_GRAPH_FILTER_GAUSS, 16, 1000); // 1
+			GraphFilter(GetHandle(WorkScreen), DX_GRAPH_FILTER_GAUSS, 16, 1000); // 2
 
 			RestoreDrawScreen();
 
