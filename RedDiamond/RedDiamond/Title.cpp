@@ -1,7 +1,79 @@
 #include "all.h"
 
+static SubScreen_t *WorkScreen;
+static double WallBokashiRate = 1.0;
+static double WallBokashiRateDest = 1.0;
+
+#define TITLE_BACK_W 410
+#define TITLE_BACK_H SCREEN_H
+#define TITLE_BACK_L ((SCREEN_W - TITLE_BACK_W) / 2)
+#define TITLE_BACK_T 0
+#define TITLE_BACK_A 0.5
+
+static double P_TitleBackW = TITLE_BACK_W;
+static double P_TitleBackWDest = TITLE_BACK_W;
+
+static void DrawWall(void)
+{
+	m_approach(WallBokashiRate, WallBokashiRateDest, 0.93);
+
+	// ---
+
+	SetDrawScreen(GetHandle(WorkScreen));
+	DrawSimple(P_TITLE_WALL, 0, 0);
+	GraphFilter(GetHandle(WorkScreen), DX_GRAPH_FILTER_GAUSS, 16, d2i(WallBokashiRate * 1000.0));
+	RestoreDrawScreen();
+
+	DPE_SetGraphicSize(makeI2D(SCREEN_W, SCREEN_H));
+	DrawSimple(GetHandle(WorkScreen), 0, 0);
+	DPE_Reset();
+}
+static void DrawTitleBack(void)
+{
+	m_approach(P_TitleBackW, P_TitleBackWDest, 0.9);
+
+	// ---
+
+	DPE_SetAlpha(TITLE_BACK_A);
+	DPE_SetBright(GetColor(0, 0, 0));
+	DrawBegin(P_WHITEBOX, SCREEN_W / 2, SCREEN_H / 2);
+	DrawSetSize_W(P_TitleBackW);
+	DrawSetSize_H(SCREEN_H);
+	DrawEnd();
+	DPE_Reset();
+}
+static void TitleConfig(void)
+{
+	P_TitleBackWDest = SCREEN_W;
+
+	for(; ; )
+	{
+		DrawWall();
+		DrawTitleBack();
+
+		// TODO
+
+		EachFrame();
+	}
+}
+static void TitleGameStart(void)
+{
+	P_TitleBackWDest = 500;
+
+	for(; ; )
+	{
+		DrawWall();
+		DrawTitleBack();
+
+		// TODO
+
+		EachFrame();
+	}
+}
 void TitleMain(void)
 {
+	WorkScreen = CreateSubScreen(SCREEN_W, SCREEN_H);
+
 	forscene(30)
 	{
 		DrawCurtain();
@@ -51,12 +123,6 @@ void TitleMain(void)
 	}
 	sceneLeave();
 
-	const int TITLE_BACK_W = 410;
-	const int TITLE_BACK_H = SCREEN_H;
-	const int TITLE_BACK_L = (SCREEN_W - TITLE_BACK_W) / 2;
-	const int TITLE_BACK_T = 0;
-	const double TITLE_BACK_A = 0.5;
-
 	const int TITLE_BTN_START_X = 130;
 	const int TITLE_BTN_START_Y = 410;
 
@@ -98,11 +164,25 @@ void TitleMain(void)
 
 			DrawCurtain();
 
+			// Wall >
+
+			SetDrawScreen(GetHandle(WorkScreen));
+
 			DPE_SetAlpha(a);
 			DrawBegin(P_TITLE_WALL, SCREEN_W / 2, SCREEN_H / 2);
 			DrawZoom(z);
 			DrawEnd();
 			DPE_Reset();
+
+			GraphFilter(GetHandle(WorkScreen), DX_GRAPH_FILTER_GAUSS, 16, 1000);
+
+			RestoreDrawScreen();
+
+			DPE_SetGraphicSize(makeI2D(SCREEN_W, SCREEN_H));
+			DrawSimple(GetHandle(WorkScreen), 0, 0);
+			DPE_Reset();
+
+			// < Wall
 
 			DPE_SetAlpha(titleBackA);
 			DPE_SetBright(GetColor(0, 0, 0));
@@ -168,6 +248,10 @@ void TitleMain(void)
 		int selConfig = 0;
 		int selExit = 0;
 
+titleStart:
+		WallBokashiRateDest = 1.0;
+		P_TitleBackWDest = TITLE_BACK_W;
+
 		for(; ; )
 		{
 			UpdateMousePos();
@@ -191,14 +275,21 @@ void TitleMain(void)
 			{
 				if(selExit)
 					break;
+
+				if(selConfig)
+				{
+					TitleConfig();
+					goto titleStart;
+				}
+				if(selStart)
+				{
+					TitleGameStart();
+					goto titleStart;
+				}
 			}
 
-			DrawSimple(P_TITLE_WALL, 0, 0);
-
-			DPE_SetAlpha(TITLE_BACK_A);
-			DPE_SetBright(GetColor(0, 0, 0));
-			DrawRect(P_WHITEBOX, TITLE_BACK_L, TITLE_BACK_T, TITLE_BACK_W, TITLE_BACK_H);
-			DPE_Reset();
+			DrawWall();
+			DrawTitleBack();
 
 			DrawCenter(P_TITLE, SCREEN_W / 2, SCREEN_H / 2);
 
@@ -221,7 +312,7 @@ void TitleMain(void)
 
 	forscene(40)
 	{
-		DrawSimple(P_TITLE_WALL, 0, 0);
+		DrawWall();
 		EachFrame();
 	}
 	sceneLeave();
