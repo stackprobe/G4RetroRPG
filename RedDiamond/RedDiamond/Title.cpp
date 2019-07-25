@@ -54,8 +54,8 @@ static void TitleConfigResetPlayData(void)
 		UpdateMousePos();
 		
 		// debug
-		clsDx();
-		printfDx("%d %d\n", MouseX, MouseY);
+		//clsDx();
+		//printfDx("%d %d\n", MouseX, MouseY);
 
 		if(GetMouInput(MOUBTN_L) == 1)
 		{
@@ -105,8 +105,6 @@ static void TitleConfig(void)
 		// debug
 		//clsDx();
 		//printfDx("%d %d\n", MouseX, MouseY);
-
-		// TODO ç¿ïWÇÃí≤êÆïKóv
 
 		if(GetMouPound(MOUBTN_L))
 		{
@@ -215,6 +213,10 @@ static void TitleGameStart2(void)
 
 	for(; ; )
 	{
+		// debug
+		//clsDx();
+		//printfDx("%d %d\n", MouseX, MouseY);
+
 		DrawWall();
 		DrawTitleBack();
 	
@@ -234,9 +236,7 @@ static void TitleGameStart2(void)
 		else
 			m_approach(selRateBack, 0.0, 0.93);
 		
-		// debug
-		//clsDx();
-		//printfDx("%d %d\n", MouseX, MouseY);
+		EachFrame(); // ÅöÅöÅö EachFrame
 
 		if(GetMouInput(MOUBTN_L) == 1)
 		{
@@ -253,7 +253,6 @@ static void TitleGameStart2(void)
 				Gnd.HasSaveData = 1; // kari
 			}
 		}
-		EachFrame();
 	}
 }
 static int TitleGameStartConfirm(void)
@@ -378,6 +377,8 @@ returned:
 		else
 			m_approach(selRateBack, 0.0, 0.93);
 
+		EachFrame(); // ÅöÅöÅö EachFrame
+
 		if(GetMouInput(MOUBTN_L) == 1)
 		{
 			if(!strcmp(pointingName, "BACK"))
@@ -396,17 +397,23 @@ returned:
 				else
 					TitleGameStart2();
 
+				selRateContinue = 0.0;
+				selRateStart = 0.0;
 				selRateBack = 1.0;
+
 				goto returned;
 			}
 			if(!strcmp(pointingName, "CONTINUE"))
 			{
 				TitleGameStart2();
+
+				selRateContinue = 0.0;
+				selRateStart = 0.0;
 				selRateBack = 1.0;
+
 				goto returned;
 			}
 		}
-		EachFrame();
 	}
 }
 void TitleMain(void)
@@ -587,7 +594,7 @@ void TitleMain(void)
 		int selConfig = 0;
 		int selExit = 0;
 
-titleStart:
+returned:
 		FreezeInput();
 
 		WallBokashiRateDest = 1.0;
@@ -634,6 +641,8 @@ titleStart:
 			else
 				m_approach(selRateExit, 0.0, 0.93);
 
+			EachFrame(); // ÅöÅöÅö EachFrame
+
 			if(GetMouInput(MOUBTN_L) == 1)
 			{
 				if(!strcmp(pointingName, "EXIT"))
@@ -642,7 +651,7 @@ titleStart:
 				if(!strcmp(pointingName, "CONFIG"))
 				{
 					TitleConfig();
-					goto titleStart;
+					goto returned;
 				}
 				if(!strcmp(pointingName, "START"))
 				{
@@ -651,10 +660,9 @@ titleStart:
 					selRateStart = 0.0;
 					selRateExit = 1.0;
 
-					goto titleStart;
+					goto returned;
 				}
 			}
-			EachFrame();
 		}
 	}
 
