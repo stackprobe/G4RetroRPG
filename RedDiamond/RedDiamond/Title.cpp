@@ -240,7 +240,7 @@ static void TitleGameStart2(void)
 			}
 		}
 
-		if(selBack = GetDistance(TGS_BACK_X, TGS_BACK_Y, MouseX, MouseY) < 90.0)
+		if(selBack = GetDistance(TGS_BACK_X, TGS_BACK_Y, MouseX, MouseY) < 90.0 + (selBack ? 10.0 : 0.0))
 			m_approach(selRateBack, 1.0, 0.85);
 		else
 			m_approach(selRateBack, 0.0, 0.93);
@@ -344,10 +344,17 @@ returned:
 			}
 			if(selStart)
 			{
-				if(Gnd.HasSaveData && TitleGameStartConfirm())
-					Gnd.HasSaveData = 0;
+				if(Gnd.HasSaveData)
+				{
+					if(TitleGameStartConfirm())
+					{
+						Gnd.HasSaveData = 0;
+						TitleGameStart2();
+					}
+				}
+				else
+					TitleGameStart2();
 
-				TitleGameStart2();
 				selRateBack = 1.0;
 				goto returned;
 			}
@@ -356,17 +363,17 @@ returned:
 		DrawWall();
 		DrawTitleBack();
 
-		if(selContinue = GetDistance(TGS_CONTINUE_X, TGS_CONTINUE_Y, MouseX, MouseY) < 120.0)
+		if(selContinue = GetDistance(TGS_CONTINUE_X, TGS_CONTINUE_Y, MouseX, MouseY) < 100.0 + (selContinue ? 20.0 : 0.0))
 			m_approach(selRateContinue, 1.0, 0.8);
 		else
 			m_approach(selRateContinue, 0.0, 0.85);
 
-		if(selStart = GetDistance(TGS_START_X, TGS_START_Y, MouseX, MouseY) < 120.0)
+		if(selStart = GetDistance(TGS_START_X, TGS_START_Y, MouseX, MouseY) < 100.0 + (selStart ? 20.0 : 0.0))
 			m_approach(selRateStart, 1.0, 0.8);
 		else
 			m_approach(selRateStart, 0.0, 0.85);
 
-		if(selBack = GetDistance(TGS_BACK_X, TGS_BACK_Y, MouseX, MouseY) < 90.0)
+		if(selBack = GetDistance(TGS_BACK_X, TGS_BACK_Y, MouseX, MouseY) < 90.0 + (selBack ? 10.0 : 0.0))
 			m_approach(selRateBack, 1.0, 0.85);
 		else
 			m_approach(selRateBack, 0.0, 0.93);
@@ -581,18 +588,18 @@ titleStart:
 		{
 			UpdateMousePos();
 
-			if(selStart = GetDistance(TITLE_BTN_START_X, TITLE_BTN_START_Y, MouseX, MouseY) < 100.0)
-				m_approach(selRateStart, 1.0, 0.8);
+			if(selStart = GetDistance(TITLE_BTN_START_X, TITLE_BTN_START_Y, MouseX, MouseY) < 100.0 + (selStart ? 20.0 : 0.0))
+				m_approach(selRateStart, 1.0, 0.85);
 			else
 				m_approach(selRateStart, 0.0, 0.9);
 
-			if(selConfig = GetDistance(TITLE_BTN_CONFIG_X, TITLE_BTN_CONFIG_Y, MouseX, MouseY) < 90.0)
-				m_approach(selRateConfig, 1.0, 0.85);
+			if(selConfig = GetDistance(TITLE_BTN_CONFIG_X, TITLE_BTN_CONFIG_Y, MouseX, MouseY) < 90.0 + (selConfig ? 10.0 : 0.0))
+				m_approach(selRateConfig, 1.0, 0.9);
 			else
 				m_approach(selRateConfig, 0.0, 0.93);
 
-			if(selExit = GetDistance(TITLE_BTN_EXIT_X, TITLE_BTN_EXIT_Y, MouseX, MouseY) < 90.0)
-				m_approach(selRateExit, 1.0, 0.85);
+			if(selExit = GetDistance(TITLE_BTN_EXIT_X, TITLE_BTN_EXIT_Y, MouseX, MouseY) < 90.0 + (selExit ? 10.0 : 0.0))
+				m_approach(selRateExit, 1.0, 0.9);
 			else
 				m_approach(selRateExit, 0.0, 0.93);
 
