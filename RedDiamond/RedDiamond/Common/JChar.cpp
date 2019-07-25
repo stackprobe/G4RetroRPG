@@ -17,7 +17,7 @@ static bitList *GetBitList(void)
 
 	if(!list)
 	{
-		autoList<uchar> *fileData = GetEtcRes()->GetHandle(ETC_JCHAR);
+		autoList<uchar> *fileData = GetEtcFileData(ETC_JCHAR);
 		autoList<uint> *listData = new autoList<uint>(fileData->GetCount() / 4);
 
 		for(int index = 0; index < fileData->GetCount(); index += 4)
@@ -36,8 +36,7 @@ static bitList *GetBitList(void)
 		list->Overwrite_DIRECT(listData);
 		delete listData;
 #endif
-
-		GetEtcRes()->UnloadAllHandle(); // ‘e‘åƒSƒ~ŠJ•ú
+		delete fileData;
 	}
 	return list;
 }
