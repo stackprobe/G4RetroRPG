@@ -106,6 +106,8 @@ static void TitleConfig(void)
 		//clsDx();
 		//printfDx("%d %d\n", MouseX, MouseY);
 
+		// TODO ç¿ïWÇÃí≤êÆïKóv
+
 		if(GetMouPound(MOUBTN_L))
 		{
 			int x = MouseX;
@@ -213,20 +215,32 @@ static void TitleGameStart2(void)
 
 	for(; ; )
 	{
+		DrawWall();
+		DrawTitleBack();
+	
+		DrawBegin(P_TITLE_BTN_BACK, TGS_BACK_X, TGS_BACK_Y);
+		DrawZoom(1.0 + selRateBack * 0.15);
+		DrawEnd();
+		SaveLastDrawedPic("BACK");
+
+		// <---- ï`âÊ
+
 		UpdateMousePos();
 
-		if(selBack = GetDistance(TGS_BACK_X, TGS_BACK_Y, MouseX, MouseY) < 90.0)
+		char *pointingName = GetDrawedPicName(MouseX, MouseY);
+
+		if(!strcmp(pointingName, "BACK"))
 			m_approach(selRateBack, 1.0, 0.85);
 		else
 			m_approach(selRateBack, 0.0, 0.93);
 		
 		// debug
-		clsDx();
-		printfDx("%d %d\n", MouseX, MouseY);
+		//clsDx();
+		//printfDx("%d %d\n", MouseX, MouseY);
 
 		if(GetMouInput(MOUBTN_L) == 1)
 		{
-			if(selBack)
+			if(!strcmp(pointingName, "BACK"))
 				break;
 
 			int x = MouseX;
@@ -239,19 +253,6 @@ static void TitleGameStart2(void)
 				Gnd.HasSaveData = 1; // kari
 			}
 		}
-
-		if(selBack = GetDistance(TGS_BACK_X, TGS_BACK_Y, MouseX, MouseY) < 90.0 + (selBack ? 10.0 : 0.0))
-			m_approach(selRateBack, 1.0, 0.85);
-		else
-			m_approach(selRateBack, 0.0, 0.93);
-
-		DrawWall();
-		DrawTitleBack();
-	
-		DrawBegin(P_TITLE_BTN_BACK, TGS_BACK_X, TGS_BACK_Y);
-		DrawZoom(1.0 + selRateBack * 0.15);
-		DrawEnd();
-
 		EachFrame();
 	}
 }
@@ -268,8 +269,8 @@ static int TitleGameStartConfirm(void)
 		UpdateMousePos();
 		
 		// debug
-		clsDx();
-		printfDx("%d %d\n", MouseX, MouseY);
+		//clsDx();
+		//printfDx("%d %d\n", MouseX, MouseY);
 
 		if(GetMouInput(MOUBTN_L) == 1)
 		{
@@ -327,22 +328,62 @@ returned:
 
 	for(; ; )
 	{
+		int continueEnabled = Gnd.HasSaveData;
+
+		// ï`âÊ ---->
+
+		DrawWall();
+		DrawTitleBack();
+
+		if(continueEnabled)
+		{
+			DrawBegin(P_TITLE_ITEM_CONTINUE, TGS_CONTINUE_X, TGS_CONTINUE_Y);
+			DrawZoom(1.0 + selRateContinue * 0.1);
+			DrawEnd();
+			SaveLastDrawedPic("CONTINUE");
+		}
+		else
+		{
+			DPE_SetBright(0.6, 0.6, 0.6);
+			DrawCenter(P_TITLE_ITEM_CONTINUE, TGS_CONTINUE_X, TGS_CONTINUE_Y);
+			DPE_Reset();
+		}
+		DrawBegin(P_TITLE_ITEM_START, TGS_START_X, TGS_START_Y);
+		DrawZoom(1.0 + selRateStart * 0.1);
+		DrawEnd();
+		SaveLastDrawedPic("START");
+		DrawBegin(P_TITLE_BTN_BACK, TGS_BACK_X, TGS_BACK_Y);
+		DrawZoom(1.0 + selRateBack * 0.15);
+		DrawEnd();
+		SaveLastDrawedPic("BACK");
+
+		// <---- ï`âÊ
+
 		UpdateMousePos();
 
-		int continueEnabled = Gnd.HasSaveData;
+		char *pointingName = GetDrawedPicName(MouseX, MouseY);
+
+		if(!strcmp(pointingName, "CONTINUE"))
+			m_approach(selRateContinue, 1.0, 0.8);
+		else
+			m_approach(selRateContinue, 0.0, 0.85);
+
+		if(!strcmp(pointingName, "START"))
+			m_approach(selRateStart, 1.0, 0.8);
+		else
+			m_approach(selRateStart, 0.0, 0.85);
+
+		if(!strcmp(pointingName, "BACK"))
+			m_approach(selRateBack, 1.0, 0.85);
+		else
+			m_approach(selRateBack, 0.0, 0.93);
 
 		if(GetMouInput(MOUBTN_L) == 1)
 		{
-			if(selBack)
+			if(!strcmp(pointingName, "BACK"))
 				break;
 
-			if(selContinue && continueEnabled)
-			{
-				TitleGameStart2();
-				selRateBack = 1.0;
-				goto returned;
-			}
-			if(selStart)
+			if(!strcmp(pointingName, "START"))
 			{
 				if(Gnd.HasSaveData)
 				{
@@ -358,45 +399,13 @@ returned:
 				selRateBack = 1.0;
 				goto returned;
 			}
+			if(!strcmp(pointingName, "CONTINUE"))
+			{
+				TitleGameStart2();
+				selRateBack = 1.0;
+				goto returned;
+			}
 		}
-
-		DrawWall();
-		DrawTitleBack();
-
-		if(selContinue = GetDistance(TGS_CONTINUE_X, TGS_CONTINUE_Y, MouseX, MouseY) < 100.0 + (selContinue ? 20.0 : 0.0))
-			m_approach(selRateContinue, 1.0, 0.8);
-		else
-			m_approach(selRateContinue, 0.0, 0.85);
-
-		if(selStart = GetDistance(TGS_START_X, TGS_START_Y, MouseX, MouseY) < 100.0 + (selStart ? 20.0 : 0.0))
-			m_approach(selRateStart, 1.0, 0.8);
-		else
-			m_approach(selRateStart, 0.0, 0.85);
-
-		if(selBack = GetDistance(TGS_BACK_X, TGS_BACK_Y, MouseX, MouseY) < 90.0 + (selBack ? 10.0 : 0.0))
-			m_approach(selRateBack, 1.0, 0.85);
-		else
-			m_approach(selRateBack, 0.0, 0.93);
-
-		if(continueEnabled)
-		{
-			DrawBegin(P_TITLE_ITEM_CONTINUE, TGS_CONTINUE_X, TGS_CONTINUE_Y);
-			DrawZoom(1.0 + selRateContinue * 0.1);
-			DrawEnd();
-		}
-		else
-		{
-			DPE_SetBright(0.6, 0.6, 0.6);
-			DrawCenter(P_TITLE_ITEM_CONTINUE, TGS_CONTINUE_X, TGS_CONTINUE_Y);
-			DPE_Reset();
-		}
-		DrawBegin(P_TITLE_ITEM_START, TGS_START_X, TGS_START_Y);
-		DrawZoom(1.0 + selRateStart * 0.1);
-		DrawEnd();
-		DrawBegin(P_TITLE_BTN_BACK, TGS_BACK_X, TGS_BACK_Y);
-		DrawZoom(1.0 + selRateBack * 0.15);
-		DrawEnd();
-
 		EachFrame();
 	}
 }
@@ -586,34 +595,56 @@ titleStart:
 
 		for(; ; )
 		{
+			DrawWall();
+			DrawTitleBack();
+
+			DrawCenter(P_TITLE, SCREEN_W / 2, SCREEN_H / 2);
+
+			DrawBegin(P_TITLE_BTN_START, TITLE_BTN_START_X, TITLE_BTN_START_Y);
+			DrawZoom(1.0 + selRateStart * 0.2);
+			DrawEnd();
+			SaveLastDrawedPic("START");
+			DrawBegin(P_TITLE_BTN_CONFIG, TITLE_BTN_CONFIG_X, TITLE_BTN_CONFIG_Y);
+			DrawZoom(1.0 + selRateConfig * 0.15);
+			DrawEnd();
+			SaveLastDrawedPic("CONFIG");
+			DrawBegin(P_TITLE_BTN_EXIT, TITLE_BTN_EXIT_X, TITLE_BTN_EXIT_Y);
+			DrawZoom(1.0 + selRateExit * 0.15);
+			DrawEnd();
+			SaveLastDrawedPic("EXIT");
+
+			// <---- ï`âÊ
+
 			UpdateMousePos();
 
-			if(selStart = GetDistance(TITLE_BTN_START_X, TITLE_BTN_START_Y, MouseX, MouseY) < 100.0 + (selStart ? 20.0 : 0.0))
+			char *pointingName = GetDrawedPicName(MouseX, MouseY);
+
+			if(!strcmp(pointingName, "START"))
 				m_approach(selRateStart, 1.0, 0.85);
 			else
 				m_approach(selRateStart, 0.0, 0.9);
 
-			if(selConfig = GetDistance(TITLE_BTN_CONFIG_X, TITLE_BTN_CONFIG_Y, MouseX, MouseY) < 90.0 + (selConfig ? 10.0 : 0.0))
+			if(!strcmp(pointingName, "CONFIG"))
 				m_approach(selRateConfig, 1.0, 0.9);
 			else
 				m_approach(selRateConfig, 0.0, 0.93);
 
-			if(selExit = GetDistance(TITLE_BTN_EXIT_X, TITLE_BTN_EXIT_Y, MouseX, MouseY) < 90.0 + (selExit ? 10.0 : 0.0))
+			if(!strcmp(pointingName, "EXIT"))
 				m_approach(selRateExit, 1.0, 0.9);
 			else
 				m_approach(selRateExit, 0.0, 0.93);
 
 			if(GetMouInput(MOUBTN_L) == 1)
 			{
-				if(selExit)
+				if(!strcmp(pointingName, "EXIT"))
 					break;
 
-				if(selConfig)
+				if(!strcmp(pointingName, "CONFIG"))
 				{
 					TitleConfig();
 					goto titleStart;
 				}
-				if(selStart)
+				if(!strcmp(pointingName, "START"))
 				{
 					TitleGameStart();
 
@@ -623,22 +654,6 @@ titleStart:
 					goto titleStart;
 				}
 			}
-
-			DrawWall();
-			DrawTitleBack();
-
-			DrawCenter(P_TITLE, SCREEN_W / 2, SCREEN_H / 2);
-
-			DrawBegin(P_TITLE_BTN_START, TITLE_BTN_START_X, TITLE_BTN_START_Y);
-			DrawZoom(1.0 + selRateStart * 0.2);
-			DrawEnd();
-			DrawBegin(P_TITLE_BTN_CONFIG, TITLE_BTN_CONFIG_X, TITLE_BTN_CONFIG_Y);
-			DrawZoom(1.0 + selRateConfig * 0.15);
-			DrawEnd();
-			DrawBegin(P_TITLE_BTN_EXIT, TITLE_BTN_EXIT_X, TITLE_BTN_EXIT_Y);
-			DrawZoom(1.0 + selRateExit * 0.15);
-			DrawEnd();
-
 			EachFrame();
 		}
 	}

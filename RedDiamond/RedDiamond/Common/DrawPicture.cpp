@@ -302,6 +302,80 @@ static int DrawPicFunc(Param_t *i)
 		ResetBright();
 	}
 
+	// app > @ post draw picture
+
+	{
+		iRect_t *rect = &LastDrawedPicRect;
+
+		switch(i->Layout->Mode)
+		{
+		case 'F':
+			{
+				double l = i->Layout->u.Free.LTX;
+				double t = i->Layout->u.Free.LTY;
+				double r = i->Layout->u.Free.LTX;
+				double b = i->Layout->u.Free.LTY;
+
+				m_minim(l, i->Layout->u.Free.RTX);
+				m_minim(l, i->Layout->u.Free.RBX);
+				m_minim(l, i->Layout->u.Free.LBX);
+
+				m_minim(t, i->Layout->u.Free.RTY);
+				m_minim(t, i->Layout->u.Free.RBY);
+				m_minim(t, i->Layout->u.Free.LBY);
+
+				m_maxim(r, i->Layout->u.Free.RTX);
+				m_maxim(r, i->Layout->u.Free.RBX);
+				m_maxim(r, i->Layout->u.Free.LBX);
+
+				m_maxim(b, i->Layout->u.Free.RTY);
+				m_maxim(b, i->Layout->u.Free.RBY);
+				m_maxim(b, i->Layout->u.Free.LBY);
+				
+				rect->L = d2i(l);
+				rect->T = d2i(t);
+				rect->W = d2i(r - l);
+				rect->H = d2i(b - t);
+			}
+			break;
+
+		case 'R':
+			{
+				double l = i->Layout->u.Rect.L;
+				double t = i->Layout->u.Rect.T;
+				double r = i->Layout->u.Rect.R;
+				double b = i->Layout->u.Rect.B;
+
+				rect->L = d2i(l);
+				rect->T = d2i(t);
+				rect->W = d2i(r - l);
+				rect->H = d2i(b - t);
+			}
+			break;
+
+		case 'S':
+			{
+				int l = d2i(i->Layout->u.Simple.X);
+				int t = d2i(i->Layout->u.Simple.Y);
+				int w;
+				int h;
+
+				errorCase(GetGraphSize(grphHdl, &w, &h)); // ? ¸”s
+
+				rect->L = l;
+				rect->T = t;
+				rect->W = w;
+				rect->H = h;
+			}
+			break;
+
+		default:
+			error();
+		}
+	}
+
+	// < app
+
 	return 0;
 }
 /*

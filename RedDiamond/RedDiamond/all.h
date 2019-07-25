@@ -6,3 +6,4 @@
 #include "Title.h"
 #include "Scenario.h"
 #include "PrintByFont.h"
+#include "PostDrawPicture.h"
