@@ -156,6 +156,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// app > @ INIT
 
+	AddFontFile(ETC_FONT_RIIT, "RiiT_F.otf");
+
 	// < app
 
 	LOGPOS();

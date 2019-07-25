@@ -135,6 +135,7 @@
     <ClCompile Include="Common\System.cpp" />
     <ClCompile Include="Common\System2.cpp" />
     <ClCompile Include="Common\taskList.cpp" />
+    <ClCompile Include="PrintByFont.cpp" />
     <ClCompile Include="ProcMain.cpp" />
     <ClCompile Include="Scenario.cpp" />
     <ClCompile Include="Title.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Common\System.h" />
     <ClInclude Include="Common\System2.h" />
     <ClInclude Include="Common\taskList.h" />
+    <ClInclude Include="PrintByFont.h" />
     <ClInclude Include="ProcMain.h" />
     <ClInclude Include="Scenario.h" />
     <ClInclude Include="Title.h" />

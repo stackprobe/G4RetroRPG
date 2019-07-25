@@ -30,9 +30,12 @@ static void DrawWall(void)
 }
 static void DrawTitleBack(void)
 {
-	m_approach(P_TitleBackW, P_TitleBackWDest, 0.9);
+	m_approach(P_TitleBackW, P_TitleBackWDest, 0.85);
 
 	// ---
+
+	if(P_TitleBackW < 0.01)
+		return;
 
 	DPE_SetAlpha(TITLE_BACK_A);
 	DPE_SetBright(GetColor(0, 0, 0));
@@ -42,30 +45,350 @@ static void DrawTitleBack(void)
 	DrawEnd();
 	DPE_Reset();
 }
-static void TitleConfig(void)
+static void TitleConfigResetPlayData(void)
 {
-	P_TitleBackWDest = SCREEN_W;
+	FreezeInput();
 
 	for(; ; )
 	{
+		UpdateMousePos();
+		
+		// debug
+		clsDx();
+		printfDx("%d %d\n", MouseX, MouseY);
+
+		if(GetMouInput(MOUBTN_L) == 1)
+		{
+			int x = MouseX;
+			int y = MouseY;
+
+			if(!IsOut(x, y, 270, 280, 370, 320)) // はい
+			{
+				// TODO SE
+
+				// TODO reset play data
+
+				Gnd.HasSaveData = 0; // セーブデータもリセットする必要あり。
+				break;
+			}
+			else if(!IsOut(x, y, 520, 280, 690, 320)) // いいえ
+			{
+				break;
+			}
+		}
 		DrawWall();
 		DrawTitleBack();
 
-		// TODO
+		SetPrintByFont();
+		PrintByFont("");
+		PrintByFont("");
+		PrintByFont("");
+		PrintByFont("");
+		PrintByFont("");
+		PrintByFont("　　　　　プレイデータを消去します。よろしいですか？");
+		PrintByFont("");
+		PrintByFont("　　　　　　　　　は　い　　　　　い　い　え");
 
 		EachFrame();
 	}
 }
-static void TitleGameStart(void)
+static void TitleConfig(void)
 {
-	P_TitleBackWDest = 500;
+	P_TitleBackWDest = SCREEN_W;
+
+	FreezeInput();
 
 	for(; ; )
 	{
+		UpdateMousePos();
+		
+		// debug
+		//clsDx();
+		//printfDx("%d %d\n", MouseX, MouseY);
+
+		if(GetMouPound(MOUBTN_L))
+		{
+			int x = MouseX;
+			int y = MouseY;
+
+			if(!IsOut(x, y, 270, 120, 470, 160)) // [960x540]
+			{
+				SetScreenSize(960, 540);
+			}
+			else if(!IsOut(x, y, 530, 120, 800, 160)) // [1440x810]
+			{
+				SetScreenSize(1440, 810);
+			}
+			else if(!IsOut(x, y, 270, 160, 470, 200)) // [1920x1080]
+			{
+				SetScreenSize(1920, 1080);
+			}
+			else if(!IsOut(x, y, 530, 160, 800, 200)) // [フルスクリーン]
+			{
+				int w = Gnd.MonitorRect.W;
+				int h = (SCREEN_H * Gnd.MonitorRect.W) / SCREEN_W;
+
+				if(Gnd.MonitorRect.H < h)
+				{
+					h = Gnd.MonitorRect.H;
+					w = (SCREEN_W * Gnd.MonitorRect.H) / SCREEN_H;
+
+					errorCase(Gnd.MonitorRect.W < w);
+				}
+				SetScreenSize(Gnd.MonitorRect.W, Gnd.MonitorRect.H);
+
+				Gnd.RealScreenDraw_L = (Gnd.MonitorRect.W - w) / 2;
+				Gnd.RealScreenDraw_T = (Gnd.MonitorRect.H - h) / 2;
+				Gnd.RealScreenDraw_W = w;
+				Gnd.RealScreenDraw_H = h;
+			}
+			else if(!IsOut(x, y, 400, 240, 530, 280))
+			{
+				Gnd.MusicVolume += 0.01;
+			}
+			else if(!IsOut(x, y, 550, 240, 690, 280))
+			{
+				Gnd.MusicVolume -= 0.01;
+			}
+			else if(!IsOut(x, y, 700, 240, 900, 280))
+			{
+				Gnd.MusicVolume = DEFAULT_VOLUME;
+			}
+			else if(!IsOut(x, y, 400, 320, 530, 360))
+			{
+				Gnd.SEVolume += 0.01;
+			}
+			else if(!IsOut(x, y, 550, 320, 690, 360))
+			{
+				Gnd.SEVolume -= 0.01;
+			}
+			else if(!IsOut(x, y, 700, 320, 900, 360))
+			{
+				Gnd.SEVolume = DEFAULT_VOLUME;
+			}
+			else if(!IsOut(x, y, 270, 400, 600, 440))
+			{
+				TitleConfigResetPlayData();
+			}
+			else if(!IsOut(x, y, 830, 480, 930, 520))
+			{
+				break;
+			}
+			m_range(Gnd.MusicVolume, 0.0, 1.0);
+			m_range(Gnd.SEVolume, 0.0, 1.0);
+		}
 		DrawWall();
 		DrawTitleBack();
 
-		// TODO
+		SetPrintByFont();
+		PrintByFont("");
+		PrintByFont("　設定");
+		PrintByFont("");
+		PrintByFont("　画面サイズ　　　[960x540]      [1440x810]");
+		PrintByFont("　　　　　　　　　[1920x1080]    [フルスクリーン]");
+		PrintByFont("");
+		PrintByFont_x(xcout("　ＢＧＭ音量　　　%.2f　　[上げる]　[下げる]　[デフォルト]", Gnd.MusicVolume));
+		PrintByFont("");
+		PrintByFont_x(xcout("　ＳＥ音量　　　　%.2f　　[上げる]　[下げる]　[デフォルト]", Gnd.SEVolume));
+		PrintByFont("");
+		PrintByFont("　　　　　　　　　プレイデータリセット");
+		PrintByFont("");
+		PrintByFont("　　　　　　　　　　　　　　　　　　　　　　　　　　　[戻る]");
+
+		EachFrame();
+	}
+}
+static void TitleGameStart2(void)
+{
+	WallBokashiRateDest = 0.0;
+	P_TitleBackWDest = 0;
+
+	const int TGS_BACK_X = 830;
+	const int TGS_BACK_Y = 460;
+
+	double selRateBack = 0.0;
+	int selBack = 0;
+
+	FreezeInput();
+
+	for(; ; )
+	{
+		UpdateMousePos();
+
+		if(selBack = GetDistance(TGS_BACK_X, TGS_BACK_Y, MouseX, MouseY) < 90.0)
+			m_approach(selRateBack, 1.0, 0.85);
+		else
+			m_approach(selRateBack, 0.0, 0.93);
+		
+		// debug
+		clsDx();
+		printfDx("%d %d\n", MouseX, MouseY);
+
+		if(GetMouInput(MOUBTN_L) == 1)
+		{
+			if(selBack)
+				break;
+
+			int x = MouseX;
+			int y = MouseY;
+
+			if(!IsOut(x, y, 330, 90, 640, 360)) // 入口
+			{
+				// TODO
+				
+				Gnd.HasSaveData = 1; // kari
+			}
+		}
+
+		if(selBack = GetDistance(TGS_BACK_X, TGS_BACK_Y, MouseX, MouseY) < 90.0)
+			m_approach(selRateBack, 1.0, 0.85);
+		else
+			m_approach(selRateBack, 0.0, 0.93);
+
+		DrawWall();
+		DrawTitleBack();
+	
+		DrawBegin(P_TITLE_BTN_BACK, TGS_BACK_X, TGS_BACK_Y);
+		DrawZoom(1.0 + selRateBack * 0.15);
+		DrawEnd();
+
+		EachFrame();
+	}
+}
+static int TitleGameStartConfirm(void)
+{
+	int ret = 0;
+
+	P_TitleBackWDest = SCREEN_W;
+
+	FreezeInput();
+
+	for(; ; )
+	{
+		UpdateMousePos();
+		
+		// debug
+		clsDx();
+		printfDx("%d %d\n", MouseX, MouseY);
+
+		if(GetMouInput(MOUBTN_L) == 1)
+		{
+			int x = MouseX;
+			int y = MouseY;
+
+			if(!IsOut(x, y, 270, 280, 370, 320)) // はい
+			{
+				ret = 1;
+				break;
+			}
+			else if(!IsOut(x, y, 520, 280, 690, 320)) // いいえ
+			{
+				break;
+			}
+		}
+		DrawWall();
+		DrawTitleBack();
+
+		SetPrintByFont();
+		PrintByFont("");
+		PrintByFont("");
+		PrintByFont("");
+		PrintByFont("");
+		PrintByFont("");
+		PrintByFont("　　　　　セーブデータを消去します。よろしいですか？");
+		PrintByFont("");
+		PrintByFont("　　　　　　　　　は　い　　　　　い　い　え");
+
+		EachFrame();
+	}
+	return ret;
+}
+static void TitleGameStart(void)
+{
+	double selRateContinue = 0.0;
+	double selRateStart = 0.0;
+	double selRateBack = 0.0;
+	int selContinue = 0;
+	int selStart = 0;
+	int selBack = 0;
+
+	const int TGS_CONTINUE_X = SCREEN_W / 2;
+	const int TGS_CONTINUE_Y = 150;
+	const int TGS_START_X = SCREEN_W / 2;
+	const int TGS_START_Y = 390;
+	const int TGS_BACK_X = 830;
+	const int TGS_BACK_Y = 460;
+
+returned:
+	FreezeInput();
+
+	WallBokashiRateDest = 1.0;
+	P_TitleBackWDest = 450;
+
+	for(; ; )
+	{
+		UpdateMousePos();
+
+		int continueEnabled = Gnd.HasSaveData;
+
+		if(GetMouInput(MOUBTN_L) == 1)
+		{
+			if(selBack)
+				break;
+
+			if(selContinue && continueEnabled)
+			{
+				TitleGameStart2();
+				selRateBack = 1.0;
+				goto returned;
+			}
+			if(selStart)
+			{
+				if(Gnd.HasSaveData && TitleGameStartConfirm())
+					Gnd.HasSaveData = 0;
+
+				TitleGameStart2();
+				selRateBack = 1.0;
+				goto returned;
+			}
+		}
+
+		DrawWall();
+		DrawTitleBack();
+
+		if(selContinue = GetDistance(TGS_CONTINUE_X, TGS_CONTINUE_Y, MouseX, MouseY) < 120.0)
+			m_approach(selRateContinue, 1.0, 0.8);
+		else
+			m_approach(selRateContinue, 0.0, 0.85);
+
+		if(selStart = GetDistance(TGS_START_X, TGS_START_Y, MouseX, MouseY) < 120.0)
+			m_approach(selRateStart, 1.0, 0.8);
+		else
+			m_approach(selRateStart, 0.0, 0.85);
+
+		if(selBack = GetDistance(TGS_BACK_X, TGS_BACK_Y, MouseX, MouseY) < 90.0)
+			m_approach(selRateBack, 1.0, 0.85);
+		else
+			m_approach(selRateBack, 0.0, 0.93);
+
+		if(continueEnabled)
+		{
+			DrawBegin(P_TITLE_ITEM_CONTINUE, TGS_CONTINUE_X, TGS_CONTINUE_Y);
+			DrawZoom(1.0 + selRateContinue * 0.1);
+			DrawEnd();
+		}
+		else
+		{
+			DPE_SetBright(0.6, 0.6, 0.6);
+			DrawCenter(P_TITLE_ITEM_CONTINUE, TGS_CONTINUE_X, TGS_CONTINUE_Y);
+			DPE_Reset();
+		}
+		DrawBegin(P_TITLE_ITEM_START, TGS_START_X, TGS_START_Y);
+		DrawZoom(1.0 + selRateStart * 0.1);
+		DrawEnd();
+		DrawBegin(P_TITLE_BTN_BACK, TGS_BACK_X, TGS_BACK_Y);
+		DrawZoom(1.0 + selRateBack * 0.15);
+		DrawEnd();
 
 		EachFrame();
 	}
@@ -124,13 +447,13 @@ void TitleMain(void)
 	sceneLeave();
 
 	const int TITLE_BTN_START_X = 130;
-	const int TITLE_BTN_START_Y = 410;
+	const int TITLE_BTN_START_Y = 460;
 
 	const int TITLE_BTN_CONFIG_X = 830;
 	const int TITLE_BTN_CONFIG_Y = 70;
 
 	const int TITLE_BTN_EXIT_X = 830;
-	const int TITLE_BTN_EXIT_Y = 410;
+	const int TITLE_BTN_EXIT_Y = 460;
 
 	{
 		double a = 0.0;
@@ -249,6 +572,8 @@ void TitleMain(void)
 		int selExit = 0;
 
 titleStart:
+		FreezeInput();
+
 		WallBokashiRateDest = 1.0;
 		P_TitleBackWDest = TITLE_BACK_W;
 
@@ -284,6 +609,10 @@ titleStart:
 				if(selStart)
 				{
 					TitleGameStart();
+
+					selRateStart = 0.0;
+					selRateExit = 1.0;
+
 					goto titleStart;
 				}
 			}

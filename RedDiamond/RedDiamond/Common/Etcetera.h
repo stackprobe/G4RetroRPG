@@ -8,6 +8,8 @@ enum
 
 	// app > @ ETC_
 
+	ETC_FONT_RIIT,
+
 	// < app
 
 	ETC_MAX, // num of member

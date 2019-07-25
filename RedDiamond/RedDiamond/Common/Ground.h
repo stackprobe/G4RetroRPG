@@ -65,6 +65,8 @@ typedef struct Gnd_st
 
 	// app > @ Gnd_t SaveData
 
+	int HasSaveData; // ‰¼
+
 	// < app
 
 	// } SaveData
