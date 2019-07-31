@@ -179,7 +179,7 @@ void EachFrame(void)
 
 	// app > @ post EachFrame
 
-	ClearSavedDrawedPic();
+	ClearNamedRects();
 
 	// < app
 }

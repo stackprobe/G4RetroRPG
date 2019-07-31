@@ -165,10 +165,10 @@
     <ClCompile Include="PrintByFont.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="PostDrawPicture.cpp">
+    <ClCompile Include="Common\Storehouse.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Common\Storehouse.cpp">
+    <ClCompile Include="NamedRect.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -350,10 +350,10 @@
     <ClInclude Include="PrintByFont.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PostDrawPicture.h">
+    <ClInclude Include="Common\Storehouse.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Common\Storehouse.h">
+    <ClInclude Include="NamedRect.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

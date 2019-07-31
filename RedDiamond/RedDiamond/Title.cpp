@@ -58,7 +58,7 @@ static void TitleConfigResetPlayData(void)
 	for(; ; )
 	{
 		UpdateMousePos();
-		
+
 		// debug
 		//clsDx();
 		//printfDx("%d %d\n", MouseX, MouseY);
@@ -107,7 +107,7 @@ static void TitleConfig(void)
 	for(; ; )
 	{
 		UpdateMousePos();
-		
+
 		// debug
 		//clsDx();
 		//printfDx("%d %d\n", MouseX, MouseY);
@@ -226,23 +226,23 @@ static void TitleGameStart2(void)
 
 		DrawWall();
 		DrawTitleBack();
-	
+
 		DrawBegin(P_TITLE_BTN_BACK, TGS_BACK_X, TGS_BACK_Y);
 		DrawZoom(1.0 + selRateBack * 0.15);
 		DrawEnd();
-		SaveLastDrawedPic("BACK");
+		SetLastDrawedPicRectName("BACK");
 
 		// <---- •`‰æ
 
 		UpdateMousePos();
 
-		char *pointingName = GetDrawedPicName(MouseX, MouseY);
+		char *pointingName = GetRectName(MouseX, MouseY);
 
 		if(!strcmp(pointingName, "BACK"))
 			m_approach(selRateBack, 1.0, 0.85);
 		else
 			m_approach(selRateBack, 0.0, 0.93);
-		
+
 		EachFrame(); // ššš EachFrame
 
 		if(GetMouInput(MOUBTN_L) == 1)
@@ -256,7 +256,7 @@ static void TitleGameStart2(void)
 			if(!IsOut(x, y, 330, 90, 640, 360)) // “üŒû
 			{
 				// TODO
-				
+
 				Gnd.HasSaveData = 1; // kari
 			}
 		}
@@ -273,7 +273,7 @@ static int TitleGameStartConfirm(void)
 	for(; ; )
 	{
 		UpdateMousePos();
-		
+
 		// debug
 		//clsDx();
 		//printfDx("%d %d\n", MouseX, MouseY);
@@ -347,7 +347,7 @@ returned:
 			DrawBegin(P_TITLE_ITEM_CONTINUE, TGS_CONTINUE_X, TGS_CONTINUE_Y);
 			DrawZoom(1.0 + selRateContinue * 0.1);
 			DrawEnd();
-			SaveLastDrawedPic("CONTINUE");
+			SetLastDrawedPicRectName("CONTINUE");
 		}
 		else
 		{
@@ -358,17 +358,17 @@ returned:
 		DrawBegin(P_TITLE_ITEM_START, TGS_START_X, TGS_START_Y);
 		DrawZoom(1.0 + selRateStart * 0.1);
 		DrawEnd();
-		SaveLastDrawedPic("START");
+		SetLastDrawedPicRectName("START");
 		DrawBegin(P_TITLE_BTN_BACK, TGS_BACK_X, TGS_BACK_Y);
 		DrawZoom(1.0 + selRateBack * 0.15);
 		DrawEnd();
-		SaveLastDrawedPic("BACK");
+		SetLastDrawedPicRectName("BACK");
 
 		// <---- •`‰æ
 
 		UpdateMousePos();
 
-		char *pointingName = GetDrawedPicName(MouseX, MouseY);
+		char *pointingName = GetRectName(MouseX, MouseY);
 
 		if(!strcmp(pointingName, "CONTINUE"))
 			m_approach(selRateContinue, 1.0, 0.8);
@@ -619,21 +619,21 @@ returned:
 			DrawBegin(P_TITLE_BTN_START, TITLE_BTN_START_X, TITLE_BTN_START_Y);
 			DrawZoom(1.0 + selRateStart * 0.2);
 			DrawEnd();
-			SaveLastDrawedPic("START");
+			SetLastDrawedPicRectName("START");
 			DrawBegin(P_TITLE_BTN_CONFIG, TITLE_BTN_CONFIG_X, TITLE_BTN_CONFIG_Y);
 			DrawZoom(1.0 + selRateConfig * 0.15);
 			DrawEnd();
-			SaveLastDrawedPic("CONFIG");
+			SetLastDrawedPicRectName("CONFIG");
 			DrawBegin(P_TITLE_BTN_EXIT, TITLE_BTN_EXIT_X, TITLE_BTN_EXIT_Y);
 			DrawZoom(1.0 + selRateExit * 0.15);
 			DrawEnd();
-			SaveLastDrawedPic("EXIT");
+			SetLastDrawedPicRectName("EXIT");
 
 			// <---- •`‰æ
 
 			UpdateMousePos();
 
-			char *pointingName = GetDrawedPicName(MouseX, MouseY);
+			char *pointingName = GetRectName(MouseX, MouseY);
 
 			if(!strcmp(pointingName, "START"))
 				m_approach(selRateStart, 1.0, 0.85);
