@@ -216,6 +216,10 @@ namespace Charlotte.Common
 		//
 		private static void DrawPicMain(DrawInfo info)
 		{
+			// app > @ enter DrawPicMain
+
+			// < app
+
 			if (info.Extra.A != -1)
 			{
 				SetBlend(DX.DX_BLENDMODE_ALPHA, info.Extra.A);
@@ -366,7 +370,88 @@ namespace Charlotte.Common
 				ResetBright();
 			}
 
-			// app > @ post draw picture
+			// app > @ leave DrawPicMain
+
+			{
+				FreeInfo u = info.Layout as FreeInfo;
+
+				if (u != null)
+				{
+					double l = u.LTX;
+					double t = u.LTY;
+					double r = u.LTX;
+					double b = u.LTY;
+
+					l = Math.Min(l, u.RTX);
+					l = Math.Min(l, u.RBX);
+					l = Math.Min(l, u.LBX);
+
+					t = Math.Min(t, u.RTY);
+					t = Math.Min(t, u.RBY);
+					t = Math.Min(t, u.LBY);
+
+					r = Math.Max(r, u.RTX);
+					r = Math.Max(r, u.RBX);
+					r = Math.Max(r, u.LBX);
+
+					b = Math.Max(b, u.RTY);
+					b = Math.Max(b, u.RBY);
+					b = Math.Max(b, u.LBY);
+
+					Charlotte.Game.NamedRect.SetLastDrawRect(new Charlotte.Tools.D4Rect()
+					{
+						L = l,
+						T = t,
+						W = r - l,
+						H = b - t,
+					});
+
+					goto endPostDraw;
+				}
+			}
+
+			{
+				RectInfo u = info.Layout as RectInfo;
+
+				if (u != null)
+				{
+					double l = u.L;
+					double t = u.T;
+					double r = u.R;
+					double b = u.B;
+
+					Charlotte.Game.NamedRect.SetLastDrawRect(new Charlotte.Tools.D4Rect()
+					{
+						L = l,
+						T = t,
+						W = r - l,
+						H = b - t,
+					});
+
+					goto endPostDraw;
+				}
+			}
+
+			{
+				SimpleInfo u = info.Layout as SimpleInfo;
+
+				if (u != null)
+				{
+					Charlotte.Game.NamedRect.SetLastDrawRect(new Charlotte.Tools.D4Rect()
+					{
+						L = u.X,
+						T = u.Y,
+						W = info.Picture.Get_W(),
+						H = info.Picture.Get_H(),
+					});
+
+					goto endPostDraw;
+				}
+			}
+
+			throw new GameError(); // ? 不明なレイアウト
+		endPostDraw:
+			;
 
 			// < app
 		}

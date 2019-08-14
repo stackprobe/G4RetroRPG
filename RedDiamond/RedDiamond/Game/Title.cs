@@ -230,7 +230,7 @@ namespace Charlotte.Game
 				GameDraw.DrawBegin(Ground.I.Picture.TitleBtnBack, TGS_BACK_X, TGS_BACK_Y);
 				GameDraw.DrawZoom(1.0 + selRateBack * 0.15);
 				GameDraw.DrawEnd();
-				NamedRect.SetLastDrawedPicRectName("BACK");
+				NamedRect.SetLastDrawedRectName("BACK");
 
 				// <---- 描画
 
@@ -342,7 +342,7 @@ namespace Charlotte.Game
 					GameDraw.DrawBegin(Ground.I.Picture.TitleItemContinue, TGS_CONTINUE_X, TGS_CONTINUE_Y);
 					GameDraw.DrawZoom(1.0 + selRateContinue * 0.1);
 					GameDraw.DrawEnd();
-					NamedRect.SetLastDrawedPicRectName("CONTINUE");
+					NamedRect.SetLastDrawedRectName("CONTINUE");
 				}
 				else
 				{
@@ -353,11 +353,11 @@ namespace Charlotte.Game
 				GameDraw.DrawBegin(Ground.I.Picture.TitleItemStart, TGS_START_X, TGS_START_Y);
 				GameDraw.DrawZoom(1.0 + selRateStart * 0.1);
 				GameDraw.DrawEnd();
-				NamedRect.SetLastDrawedPicRectName("START");
+				NamedRect.SetLastDrawedRectName("START");
 				GameDraw.DrawBegin(Ground.I.Picture.TitleBtnBack, TGS_BACK_X, TGS_BACK_Y);
 				GameDraw.DrawZoom(1.0 + selRateBack * 0.15);
 				GameDraw.DrawEnd();
-				NamedRect.SetLastDrawedPicRectName("BACK");
+				NamedRect.SetLastDrawedRectName("BACK");
 
 				// <---- 描画
 
@@ -601,15 +601,15 @@ namespace Charlotte.Game
 					GameDraw.DrawBegin(Ground.I.Picture.TitleBtnStart, TITLE_BTN_START_X, TITLE_BTN_START_Y);
 					GameDraw.DrawZoom(1.0 + selRateStart * 0.2);
 					GameDraw.DrawEnd();
-					NamedRect.SetLastDrawedPicRectName("START");
+					NamedRect.SetLastDrawedRectName("START");
 					GameDraw.DrawBegin(Ground.I.Picture.TitleBtnConfig, TITLE_BTN_CONFIG_X, TITLE_BTN_CONFIG_Y);
 					GameDraw.DrawZoom(1.0 + selRateConfig * 0.15);
 					GameDraw.DrawEnd();
-					NamedRect.SetLastDrawedPicRectName("CONFIG");
+					NamedRect.SetLastDrawedRectName("CONFIG");
 					GameDraw.DrawBegin(Ground.I.Picture.TitleBtnExit, TITLE_BTN_EXIT_X, TITLE_BTN_EXIT_Y);
 					GameDraw.DrawZoom(1.0 + selRateExit * 0.15);
 					GameDraw.DrawEnd();
-					NamedRect.SetLastDrawedPicRectName("EXIT");
+					NamedRect.SetLastDrawedRectName("EXIT");
 
 					// <---- 描画
 
