@@ -1,3 +1,0 @@
-Etcetera\DatStrings.txt
-C:\Dat\JChar.bin
-Resource\riitf\RiiT_F.otf

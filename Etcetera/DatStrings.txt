@@ -1,4 +1,0 @@
-RedDiamond
-cerulean.charlotte
-(c) 20xx cerulean.charlotte
-%s %s
