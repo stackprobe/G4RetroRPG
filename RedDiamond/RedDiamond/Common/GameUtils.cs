@@ -90,6 +90,38 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
+		public static void Minim(ref double value, double minval)
+		{
+			value = Math.Min(value, minval);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void Minim(ref int value, int minval)
+		{
+			value = Math.Min(value, minval);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void Maxim(ref double value, double minval)
+		{
+			value = Math.Max(value, minval);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void Maxim(ref int value, int minval)
+		{
+			value = Math.Max(value, minval);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public static void Rotate(ref double x, ref double y, double rot)
 		{
 			double w;
@@ -338,6 +370,14 @@ namespace Charlotte.Common
 		public static bool IsPound(int counter)
 		{
 			return counter == 1 || POUND_FIRST_DELAY < counter && (counter - POUND_FIRST_DELAY) % POUND_DELAY == 1;
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static double Random() // ret: 0.0 以上 1.0 未満
+		{
+			return SecurityTools.CRandom.GetReal2();
 		}
 	}
 }
