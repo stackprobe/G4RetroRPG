@@ -19,7 +19,7 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public GameDerivationTable(Func<GamePicture> getPicture, int x, int y, int w, int h, int xNum, int yNum, int xStep = -1, int yStep = -1)
+		public GameDerivationTable(GamePicture picture, int x, int y, int w, int h, int xNum, int yNum, int xStep = -1, int yStep = -1)
 		{
 			if (xStep == -1) xStep = w;
 			if (yStep == -1) yStep = h;
@@ -30,7 +30,7 @@ namespace Charlotte.Common
 			{
 				for (int yc = 0; yc < yNum; yc++)
 				{
-					this.DerTable[xc, yc] = GameDerivations.GetPicture(getPicture, x + xc * xStep, y + yc * yStep, w, h);
+					this.DerTable[xc, yc] = GameDerivations.GetPicture(picture, x + xc * xStep, y + yc * yStep, w, h);
 				}
 			}
 		}
