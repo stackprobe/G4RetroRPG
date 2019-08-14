@@ -23,17 +23,14 @@ namespace Charlotte.Common
 		public static void INIT()
 		{
 			WD = new WorkingDir();
-		}
 
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		public static void FNLZ()
-		{
-			UnloadAll();
+			GameMain.Finalizers.Add(() =>
+			{
+				UnloadAll();
 
-			WD.Dispose();
-			WD = null;
+				WD.Dispose();
+				WD = null;
+			});
 		}
 
 		//

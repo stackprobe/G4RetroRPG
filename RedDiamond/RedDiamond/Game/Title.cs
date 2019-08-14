@@ -74,7 +74,7 @@ namespace Charlotte.Game
 					int x = GameMouse.X;
 					int y = GameMouse.Y;
 
-					if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(270, 280, 370, 320)) == false) // はい
+					if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(270, 280, 370, 320)) == false) // はい
 					{
 						// TODO SE
 
@@ -83,7 +83,7 @@ namespace Charlotte.Game
 						SaveData.HasSaveData = false; // セーブデータもリセットする必要あり。
 						break;
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(520, 280, 690, 320)) == false) // いいえ
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(520, 280, 690, 320)) == false) // いいえ
 					{
 						break;
 					}
@@ -120,19 +120,19 @@ namespace Charlotte.Game
 					int x = GameMouse.X;
 					int y = GameMouse.Y;
 
-					if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(270, 120, 470, 160)) == false) // [960x540]
+					if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(270, 120, 470, 160)) == false) // [960x540]
 					{
 						GameMain.SetScreenSize(960, 540);
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(530, 120, 800, 160)) == false) // [1440x810]
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(530, 120, 800, 160)) == false) // [1440x810]
 					{
 						GameMain.SetScreenSize(1440, 810);
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(270, 160, 470, 200)) == false) // [1920x1080]
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(270, 160, 470, 200)) == false) // [1920x1080]
 					{
 						GameMain.SetScreenSize(1920, 1080);
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(530, 160, 800, 200)) == false) // [フルスクリーン]
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(530, 160, 800, 200)) == false) // [フルスクリーン]
 					{
 						int w = GameGround.MonitorRect.W;
 						int h = (GameConsts.Screen_H * GameGround.MonitorRect.W) / GameConsts.Screen_W;
@@ -152,35 +152,35 @@ namespace Charlotte.Game
 						GameGround.RealScreenDraw_W = w;
 						GameGround.RealScreenDraw_H = h;
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(400, 240, 530, 280)) == false)
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(400, 240, 530, 280)) == false)
 					{
 						GameGround.MusicVolume += 0.01;
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(550, 240, 690, 280)) == false)
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(550, 240, 690, 280)) == false)
 					{
 						GameGround.MusicVolume -= 0.01;
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(700, 240, 900, 280)) == false)
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(700, 240, 900, 280)) == false)
 					{
 						GameGround.MusicVolume = GameConsts.DefaultVolume;
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(400, 320, 530, 360)) == false)
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(400, 320, 530, 360)) == false)
 					{
 						GameGround.SEVolume += 0.01;
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(550, 320, 690, 360)) == false)
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(550, 320, 690, 360)) == false)
 					{
 						GameGround.SEVolume -= 0.01;
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(700, 320, 900, 360)) == false)
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(700, 320, 900, 360)) == false)
 					{
 						GameGround.SEVolume = GameConsts.DefaultVolume;
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(270, 400, 600, 440)) == false)
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(270, 400, 600, 440)) == false)
 					{
 						TitleConfigResetPlayData();
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(830, 480, 930, 520)) == false)
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(830, 480, 930, 520)) == false)
 					{
 						break;
 					}
@@ -197,9 +197,9 @@ namespace Charlotte.Game
 				PrintByFont.Print("　画面サイズ　　　[960x540]      [1440x810]");
 				PrintByFont.Print("　　　　　　　　　[1920x1080]    [フルスクリーン]");
 				PrintByFont.Print("");
-				PrintByFont.Print(string.Format("　ＢＧＭ音量　　　%.2f　　[上げる]　[下げる]　[デフォルト]", GameGround.MusicVolume));
+				PrintByFont.Print(string.Format("　ＢＧＭ音量　　　{0:F2}　　[上げる]　[下げる]　[デフォルト]", GameGround.MusicVolume));
 				PrintByFont.Print("");
-				PrintByFont.Print(string.Format("　ＳＥ音量　　　　%.2f　　[上げる]　[下げる]　[デフォルト]", GameGround.SEVolume));
+				PrintByFont.Print(string.Format("　ＳＥ音量　　　　{0:F2}　　[上げる]　[下げる]　[デフォルト]", GameGround.SEVolume));
 				PrintByFont.Print("");
 				PrintByFont.Print("　　　　　　　　　プレイデータリセット");
 				PrintByFont.Print("");
@@ -253,7 +253,7 @@ namespace Charlotte.Game
 					int x = GameMouse.X;
 					int y = GameMouse.Y;
 
-					if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(330, 90, 640, 360)) == false) // 入口
+					if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(330, 90, 640, 360)) == false) // 入口
 					{
 						// TODO
 
@@ -280,12 +280,12 @@ namespace Charlotte.Game
 					int x = GameMouse.X;
 					int y = GameMouse.Y;
 
-					if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(270, 280, 370, 320)) == false) // はい
+					if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(270, 280, 370, 320)) == false) // はい
 					{
 						ret = true;
 						break;
 					}
-					else if (GameUtils.IsOut(new D2Point(x, y), new D4Rect(520, 280, 690, 320)) == false) // いいえ
+					else if (GameUtils.IsOut(new D2Point(x, y), D4Rect.LTRB(520, 280, 690, 320)) == false) // いいえ
 					{
 						break;
 					}

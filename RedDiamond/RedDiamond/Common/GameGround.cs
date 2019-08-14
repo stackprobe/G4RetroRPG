@@ -121,13 +121,5 @@ namespace Charlotte.Common
 
 			GameAdditionalEvents.Ground_INIT();
 		}
-
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		public static void FNLZ()
-		{
-			GameAdditionalEvents.Ground_FNLZ();
-		}
 	}
 }

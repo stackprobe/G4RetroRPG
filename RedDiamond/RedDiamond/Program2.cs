@@ -6,6 +6,7 @@ using DxLibDLL;
 using Charlotte.Common;
 using Charlotte.Tools;
 using Charlotte.Tests;
+using Charlotte.Game;
 
 namespace Charlotte
 {
@@ -75,7 +76,8 @@ namespace Charlotte
 
 		private void Main4()
 		{
-			new Test0001().Test01();
+			//new Test0001().Test01();
+			Title.TitleMain();
 		}
 	}
 }

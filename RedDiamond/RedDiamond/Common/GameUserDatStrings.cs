@@ -44,14 +44,6 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static void FNLZ()
-		{
-			// noop
-		}
-
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
 		private static string GetValue(string name, string defval)
 		{
 			if (Name2Value.ContainsKey(name) == false)

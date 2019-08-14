@@ -398,13 +398,13 @@ namespace Charlotte.Common
 					b = Math.Max(b, u.RBY);
 					b = Math.Max(b, u.LBY);
 
-					Charlotte.Game.NamedRect.SetLastDrawRect(new Charlotte.Tools.D4Rect()
+					Charlotte.Game.NamedRect.LastDrawedRect = new Charlotte.Tools.D4Rect()
 					{
 						L = l,
 						T = t,
 						W = r - l,
 						H = b - t,
-					});
+					};
 
 					goto endPostDraw;
 				}
@@ -420,13 +420,13 @@ namespace Charlotte.Common
 					double r = u.R;
 					double b = u.B;
 
-					Charlotte.Game.NamedRect.SetLastDrawRect(new Charlotte.Tools.D4Rect()
+					Charlotte.Game.NamedRect.LastDrawedRect = new Charlotte.Tools.D4Rect()
 					{
 						L = l,
 						T = t,
 						W = r - l,
 						H = b - t,
-					});
+					};
 
 					goto endPostDraw;
 				}
@@ -437,13 +437,13 @@ namespace Charlotte.Common
 
 				if (u != null)
 				{
-					Charlotte.Game.NamedRect.SetLastDrawRect(new Charlotte.Tools.D4Rect()
+					Charlotte.Game.NamedRect.LastDrawedRect = new Charlotte.Tools.D4Rect()
 					{
 						L = u.X,
 						T = u.Y,
 						W = info.Picture.Get_W(),
 						H = info.Picture.Get_H(),
-					});
+					};
 
 					goto endPostDraw;
 				}

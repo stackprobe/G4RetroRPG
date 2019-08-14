@@ -153,6 +153,8 @@ namespace Charlotte.Common
 
 			// app > @ leave EachFrame
 
+			Charlotte.Game.NamedRect.Clear();
+
 			// < app
 		}
 
