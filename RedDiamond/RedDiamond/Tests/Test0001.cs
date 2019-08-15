@@ -10,27 +10,27 @@ namespace Charlotte.Tests
 	{
 		public void Test01()
 		{
-			GameCurtain.SetCurtain();
-			GameEngine.FreezeInput();
+			DDCurtain.SetCurtain();
+			DDEngine.FreezeInput();
 
-			foreach (GameScene scene in GameSceneUtils.Create(600))
+			foreach (DDScene scene in DDSceneUtils.Create(600))
 			{
-				if (GameInput.A.GetInput() == 1)
+				if (DDInput.A.GetInput() == 1)
 				{
 					break;
 				}
 
-				GameCurtain.DrawCurtain();
+				DDCurtain.DrawCurtain();
 
-				GameDraw.DrawBegin(GameGround.GeneralResource.Dummy, GameConsts.Screen_W / 2.0, GameConsts.Screen_H / 2.0);
-				GameDraw.DrawZoom(5.0);
-				GameDraw.DrawRotate(scene.Rate * 5.0);
-				GameDraw.DrawEnd();
+				DDDraw.DrawBegin(DDGround.GeneralResource.Dummy, DDConsts.Screen_W / 2.0, DDConsts.Screen_H / 2.0);
+				DDDraw.DrawZoom(5.0);
+				DDDraw.DrawRotate(scene.Rate * 5.0);
+				DDDraw.DrawEnd();
 
-				GameEngine.EachFrame();
+				DDEngine.EachFrame();
 			}
 
-			GameEngine.FreezeInput();
+			DDEngine.FreezeInput();
 		}
 	}
 }

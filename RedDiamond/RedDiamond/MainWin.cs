@@ -38,7 +38,7 @@ namespace Charlotte
 
 			bool[] aliving = new bool[] { true };
 
-			GameAdditionalEvents.PostGameStart_G2 = () =>
+			DDAdditionalEvents.PostGameStart_G2 = () =>
 			{
 				this.BeginInvoke((MethodInvoker)delegate
 				{

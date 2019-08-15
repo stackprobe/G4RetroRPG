@@ -8,14 +8,14 @@ namespace Charlotte
 {
 	public class ResourcePicture
 	{
-		public GamePicture Logo = GamePictureLoaders.Standard(@"Title\Logo.png");
-		public GamePicture Title = GamePictureLoaders.Standard(@"Title\Title.png");
-		public GamePicture TitleBtnBack = GamePictureLoaders.Standard(@"Title\TitleBtnBack.png");
-		public GamePicture TitleBtnConfig = GamePictureLoaders.Standard(@"Title\TitleBtnConfig.png");
-		public GamePicture TitleBtnExit = GamePictureLoaders.Standard(@"Title\TitleBtnExit.png");
-		public GamePicture TitleBtnStart = GamePictureLoaders.Standard(@"Title\TitleBtnStart.png");
-		public GamePicture TitleItemContinue = GamePictureLoaders.Standard(@"Title\TitleItemContinue.png");
-		public GamePicture TitleItemStart = GamePictureLoaders.Standard(@"Title\TitleItemStart.png");
-		public GamePicture TitleWall = GamePictureLoaders.Standard(@"Title\TitleWall.png");
+		public DDPicture Logo = DDPictureLoaders.Standard(@"Title\Logo.png");
+		public DDPicture Title = DDPictureLoaders.Standard(@"Title\Title.png");
+		public DDPicture TitleBtnBack = DDPictureLoaders.Standard(@"Title\TitleBtnBack.png");
+		public DDPicture TitleBtnConfig = DDPictureLoaders.Standard(@"Title\TitleBtnConfig.png");
+		public DDPicture TitleBtnExit = DDPictureLoaders.Standard(@"Title\TitleBtnExit.png");
+		public DDPicture TitleBtnStart = DDPictureLoaders.Standard(@"Title\TitleBtnStart.png");
+		public DDPicture TitleItemContinue = DDPictureLoaders.Standard(@"Title\TitleItemContinue.png");
+		public DDPicture TitleItemStart = DDPictureLoaders.Standard(@"Title\TitleItemStart.png");
+		public DDPicture TitleWall = DDPictureLoaders.Standard(@"Title\TitleWall.png");
 	}
 }

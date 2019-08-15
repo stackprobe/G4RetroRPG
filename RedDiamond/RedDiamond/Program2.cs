@@ -6,7 +6,7 @@ using DxLibDLL;
 using Charlotte.Common;
 using Charlotte.Tools;
 using Charlotte.Tests;
-using Charlotte.Game;
+using Charlotte.Main01;
 
 namespace Charlotte
 {
@@ -26,28 +26,28 @@ namespace Charlotte
 
 		private void Main3()
 		{
-			GameAdditionalEvents.Ground_INIT = () =>
+			DDAdditionalEvents.Ground_INIT = () =>
 			{
-				GameGround.RO_MouseDispMode = true;
+				DDGround.RO_MouseDispMode = true;
 			};
 
-			GameAdditionalEvents.Ground_FNLZ = () =>
+			DDAdditionalEvents.Ground_FNLZ = () =>
 			{
 				// none
 			};
 
-			GameAdditionalEvents.PostGameStart = () =>
+			DDAdditionalEvents.PostGameStart = () =>
 			{
 				// Font >
 
-				GameFontRegister.Add(@"riitf\RiiT_F.otf");
+				DDFontRegister.Add(@"riitf\RiiT_F.otf");
 
 				// < Font
 
 				Ground.I = new Ground();
 			};
 
-			GameAdditionalEvents.Save = lines =>
+			DDAdditionalEvents.Save = lines =>
 			{
 				lines.Add(DateTime.Now.ToString()); // Dummy
 				lines.Add(DateTime.Now.ToString()); // Dummy
@@ -58,20 +58,20 @@ namespace Charlotte
 				// 新しい項目をここへ追加...
 			};
 
-			GameAdditionalEvents.Load = lines =>
+			DDAdditionalEvents.Load = lines =>
 			{
 				int c = 0;
 
-				GameUtils.Noop(lines[c++]); // Dummy
-				GameUtils.Noop(lines[c++]); // Dummy
-				GameUtils.Noop(lines[c++]); // Dummy
+				DDUtils.Noop(lines[c++]); // Dummy
+				DDUtils.Noop(lines[c++]); // Dummy
+				DDUtils.Noop(lines[c++]); // Dummy
 
 				SaveData.HasSaveData = int.Parse(lines[c++]) != 0;
 
 				// 新しい項目をここへ追加...
 			};
 
-			GameMain2.Perform(Main4);
+			DDMain2.Perform(Main4);
 		}
 
 		private void Main4()
