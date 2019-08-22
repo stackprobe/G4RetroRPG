@@ -26,5 +26,18 @@ namespace Charlotte.Common
 				pinnedData.Free();
 			}
 		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void Pin<T>(T data)
+		{
+			GCHandle h = GCHandle.Alloc(data, GCHandleType.Pinned);
+
+			DDMain.Finalizers.Add(() =>
+			{
+				h.Free();
+			});
+		}
 	}
 }

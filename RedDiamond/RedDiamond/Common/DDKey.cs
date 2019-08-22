@@ -28,6 +28,14 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
+		public static void INIT()
+		{
+			DDSystem.Pin(StatusMap);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public static void EachFrame()
 		{
 			if (DDEngine.WindowIsActive)
