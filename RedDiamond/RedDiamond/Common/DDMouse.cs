@@ -20,15 +20,33 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private static int L;
+		public class Button
+		{
+			public int Status = 0;
+
+			public int GetInput()
+			{
+				return 1 <= DDEngine.FreezeInputFrame ? 0 : this.Status;
+			}
+
+			public bool IsPound()
+			{
+				return DDUtils.IsPound(this.GetInput());
+			}
+		}
+
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private static int R;
+		public static Button L = new Button();
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private static int M;
+		public static Button R = new Button();
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static Button M = new Button();
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
@@ -39,7 +57,7 @@ namespace Charlotte.Common
 
 			if (DDEngine.WindowIsActive)
 			{
-				Rot = DX.GetMouseHWheelRotVol();
+				Rot = DX.GetMouseWheelRotVol();
 				status = (uint)DX.GetMouseInput();
 			}
 			else
@@ -49,41 +67,9 @@ namespace Charlotte.Common
 			}
 			Rot = IntTools.Range(Rot, -IntTools.IMAX, IntTools.IMAX);
 
-			DDUtils.UpdateInput(ref L, (status & (uint)DX.MOUSE_INPUT_LEFT) != 0u);
-			DDUtils.UpdateInput(ref R, (status & (uint)DX.MOUSE_INPUT_RIGHT) != 0u);
-			DDUtils.UpdateInput(ref M, (status & (uint)DX.MOUSE_INPUT_MIDDLE) != 0u);
-		}
-
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		private static int GetInput(int status)
-		{
-			return 1 <= DDEngine.FreezeInputFrame ? 0 : status;
-		}
-
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		public static int Get_L()
-		{
-			return GetInput(L);
-		}
-
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		public static int Get_R()
-		{
-			return GetInput(R);
-		}
-
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		public static int Get_M()
-		{
-			return GetInput(M);
+			DDUtils.UpdateInput(ref L.Status, (status & (uint)DX.MOUSE_INPUT_LEFT) != 0u);
+			DDUtils.UpdateInput(ref R.Status, (status & (uint)DX.MOUSE_INPUT_RIGHT) != 0u);
+			DDUtils.UpdateInput(ref M.Status, (status & (uint)DX.MOUSE_INPUT_MIDDLE) != 0u);
 		}
 
 		//

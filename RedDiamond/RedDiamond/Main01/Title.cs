@@ -69,7 +69,7 @@ namespace Charlotte.Main01
 			{
 				DDMouse.UpdatePos();
 
-				if (DDMouse.Get_L() == 1)
+				if (DDMouse.L.GetInput() == 1)
 				{
 					int x = DDMouse.X;
 					int y = DDMouse.Y;
@@ -115,7 +115,7 @@ namespace Charlotte.Main01
 			{
 				DDMouse.UpdatePos();
 
-				if (DDUtils.IsPound(DDMouse.Get_L()))
+				if (DDUtils.IsPound(DDMouse.L.GetInput()))
 				{
 					int x = DDMouse.X;
 					int y = DDMouse.Y;
@@ -245,7 +245,7 @@ namespace Charlotte.Main01
 
 				DDEngine.EachFrame(); // ★★★ EachFrame
 
-				if (DDMouse.Get_L() == 1)
+				if (DDMouse.L.GetInput() == 1)
 				{
 					if (pointingName == "BACK")
 						break;
@@ -275,7 +275,7 @@ namespace Charlotte.Main01
 			{
 				DDMouse.UpdatePos();
 
-				if (DDMouse.Get_L() == 1)
+				if (DDMouse.L.GetInput() == 1)
 				{
 					int x = DDMouse.X;
 					int y = DDMouse.Y;
@@ -382,7 +382,7 @@ namespace Charlotte.Main01
 
 				DDEngine.EachFrame(); // ★★★ EachFrame
 
-				if (DDMouse.Get_L() == 1)
+				if (DDMouse.L.GetInput() == 1)
 				{
 					if (pointingName == "BACK")
 						break;
@@ -634,7 +634,7 @@ namespace Charlotte.Main01
 
 					DDEngine.EachFrame(); // ★★★ EachFrame
 
-					if (DDMouse.Get_L() == 1)
+					if (DDMouse.L.GetInput() == 1)
 					{
 						if (pointingName == "EXIT")
 							break;
