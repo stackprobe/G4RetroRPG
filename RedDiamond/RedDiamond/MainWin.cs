@@ -10,10 +10,14 @@ using System.Windows.Forms;
 using Charlotte.Tools;
 using Charlotte.Common;
 
+// ^ sync @ G2_MainWin
+
 namespace Charlotte
 {
 	public partial class MainWin : Form
 	{
+		// sync > @ G2_MainWin
+
 		public MainWin()
 		{
 			InitializeComponent();
@@ -24,10 +28,10 @@ namespace Charlotte
 			// noop
 		}
 
+		public static MainWin I = null;
+
 		private void MainWin_Shown(object sender, EventArgs e)
 		{
-			// sync > @ G2_MainWin_Shown
-
 			ProcMain.WriteLog = message =>
 			{
 				if (message is Exception)
@@ -49,7 +53,9 @@ namespace Charlotte
 
 			Thread th = new Thread(() =>
 			{
+				I = this;
 				new Program2().Main2();
+				I = null;
 
 				this.BeginInvoke((MethodInvoker)delegate
 				{
@@ -59,8 +65,6 @@ namespace Charlotte
 			});
 
 			th.Start();
-
-			// < sync
 		}
 
 		private void MainWin_FormClosing(object sender, FormClosingEventArgs e)
@@ -72,5 +76,7 @@ namespace Charlotte
 		{
 			// noop
 		}
+
+		// < sync
 	}
 }
