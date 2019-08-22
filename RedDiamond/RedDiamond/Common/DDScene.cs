@@ -22,5 +22,16 @@ namespace Charlotte.Common
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
 		public double Rate;
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public int Remaining
+		{
+			get
+			{
+				return this.Denom - this.Numer;
+			}
+		}
 	}
 }
