@@ -20,10 +20,6 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static Action Ground_FNLZ = () => { };
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
 		public static Action PostGameStart = () =>
 		{
 			//DDFontRegister.Add(@"Font\Genkai-Mincho-font\genkai-mincho.ttf");
