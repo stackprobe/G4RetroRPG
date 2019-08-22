@@ -39,6 +39,9 @@
     <ApplicationIcon>game_app.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Chocolate">
+      <HintPath>..\..\..\..\CSharp\Chocolate\Chocolate\bin\Release\Chocolate.dll</HintPath>
+    </Reference>
     <Reference Include="DxLibDotNet">
       <HintPath>C:\Dat\DxLibDotNet\3_20f\DxLibDotNet.dll</HintPath>
     </Reference>
@@ -122,95 +125,6 @@
     <Compile Include="ResourceSE.cs" />
     <Compile Include="SaveData.cs" />
     <Compile Include="Tests\Test0001.cs" />
-    <Compile Include="Tools\AnonyDisposable.cs" />
-    <Compile Include="Tools\ArgsReader.cs" />
-    <Compile Include="Tools\ArrayTools.cs" />
-    <Compile Include="Tools\AttachString.cs" />
-    <Compile Include="Tools\AutoList.cs" />
-    <Compile Include="Tools\AutoTable.cs" />
-    <Compile Include="Tools\Base64Unit.cs" />
-    <Compile Include="Tools\BinTools.cs" />
-    <Compile Include="Tools\BitList.cs" />
-    <Compile Include="Tools\BitTable.cs" />
-    <Compile Include="Tools\BluffList.cs" />
-    <Compile Include="Tools\CacheMap.cs" />
-    <Compile Include="Tools\Canvas.cs" />
-    <Compile Include="Tools\Canvas2.cs" />
-    <Compile Include="Tools\CanvasTools.cs" />
-    <Compile Include="Tools\CipherTools.cs" />
-    <Compile Include="Tools\Critical.cs" />
-    <Compile Include="Tools\CSemaphore.cs" />
-    <Compile Include="Tools\CsvFileReader.cs" />
-    <Compile Include="Tools\CsvFileWriter.cs" />
-    <Compile Include="Tools\D2Point.cs" />
-    <Compile Include="Tools\D2Size.cs" />
-    <Compile Include="Tools\D3Color.cs" />
-    <Compile Include="Tools\D4Color.cs" />
-    <Compile Include="Tools\D4Rect.cs" />
-    <Compile Include="Tools\DateTimeToSec.cs" />
-    <Compile Include="Tools\DateTimeUnit.cs" />
-    <Compile Include="Tools\DateToDay.cs" />
-    <Compile Include="Tools\DebugTools.cs" />
-    <Compile Include="Tools\DictionaryTools.cs" />
-    <Compile Include="Tools\DoubleTools.cs" />
-    <Compile Include="Tools\EnumerableTools.cs" />
-    <Compile Include="Tools\EscapeString.cs" />
-    <Compile Include="Tools\ExceptionDam.cs" />
-    <Compile Include="Tools\ExtraTools.cs" />
-    <Compile Include="Tools\FileTools.cs" />
-    <Compile Include="Tools\FilingCase3.cs" />
-    <Compile Include="Tools\FilingCase3Client.cs" />
-    <Compile Include="Tools\HandleDam.cs" />
-    <Compile Include="Tools\HTTPBodyOutputStream.cs" />
-    <Compile Include="Tools\HTTPClient.cs" />
-    <Compile Include="Tools\HTTPServer.cs" />
-    <Compile Include="Tools\HTTPServerChannel.cs" />
-    <Compile Include="Tools\Hub.cs" />
-    <Compile Include="Tools\HugeQueue.cs" />
-    <Compile Include="Tools\I2Point.cs" />
-    <Compile Include="Tools\I2Size.cs" />
-    <Compile Include="Tools\I3Color.cs" />
-    <Compile Include="Tools\I4Color.cs" />
-    <Compile Include="Tools\I4Rect.cs" />
-    <Compile Include="Tools\IntTools.cs" />
-    <Compile Include="Tools\JsonTools.cs" />
-    <Compile Include="Tools\JString.cs" />
-    <Compile Include="Tools\LimitedReader.cs" />
-    <Compile Include="Tools\LimitedWriter.cs" />
-    <Compile Include="Tools\LongTools.cs" />
-    <Compile Include="Tools\MSection.cs" />
-    <Compile Include="Tools\MultiThreadEx.cs" />
-    <Compile Include="Tools\MultiThreadTaskInvoker.cs" />
-    <Compile Include="Tools\MutexTools.cs" />
-    <Compile Include="Tools\NamedEventPair.cs" />
-    <Compile Include="Tools\NamedEventTools.cs" />
-    <Compile Include="Tools\NamedEventUnit.cs" />
-    <Compile Include="Tools\ObjectList.cs" />
-    <Compile Include="Tools\ObjectMap.cs" />
-    <Compile Include="Tools\ObjectTree.cs" />
-    <Compile Include="Tools\OrderedMap.cs" />
-    <Compile Include="Tools\ProcessTools.cs" />
-    <Compile Include="Tools\ProcMain.cs" />
-    <Compile Include="Tools\RandomUnit.cs" />
-    <Compile Include="Tools\ReflectTools.cs" />
-    <Compile Include="Tools\SecurityTools.cs" />
-    <Compile Include="Tools\SharedQueue.cs" />
-    <Compile Include="Tools\SockChannel.cs" />
-    <Compile Include="Tools\SockClient.cs" />
-    <Compile Include="Tools\SockServer.cs" />
-    <Compile Include="Tools\SortedList.cs" />
-    <Compile Include="Tools\StringTools.cs" />
-    <Compile Include="Tools\SyncList.cs" />
-    <Compile Include="Tools\SyncQueue.cs" />
-    <Compile Include="Tools\SyncValue.cs" />
-    <Compile Include="Tools\ThreadEx.cs" />
-    <Compile Include="Tools\TreeSet.cs" />
-    <Compile Include="Tools\VariantTools.cs" />
-    <Compile Include="Tools\VisitorCounter.cs" />
-    <Compile Include="Tools\WorkingDir.cs" />
-    <Compile Include="Tools\Wrapper.cs" />
-    <Compile Include="Tools\XmlNode.cs" />
-    <Compile Include="Tools\ZipTools.cs" />
     <EmbeddedResource Include="MainWin.resx">
       <DependentUpon>MainWin.cs</DependentUpon>
     </EmbeddedResource>
