@@ -169,5 +169,14 @@ namespace Charlotte.Common
 
 			P_X += w;
 		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void PrintLine(string line)
+		{
+			Print(line);
+			PrintRet();
+		}
 	}
 }
