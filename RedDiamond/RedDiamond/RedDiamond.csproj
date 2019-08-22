@@ -65,10 +65,8 @@
     <Compile Include="Common\DDCurtain.cs" />
     <Compile Include="Common\DDDatStrings.cs" />
     <Compile Include="Common\DDDerivations.cs" />
-    <Compile Include="Common\DDDerivationTable.cs" />
     <Compile Include="Common\DDDerivationUtils.cs" />
     <Compile Include="Common\DDDraw.cs" />
-    <Compile Include="Common\DDDxUtils.cs" />
     <Compile Include="Common\DDEngine.cs" />
     <Compile Include="Common\DDError.cs" />
     <Compile Include="Common\DDFont.cs" />
@@ -93,7 +91,6 @@
     <Compile Include="Common\DDPictureUtils.cs" />
     <Compile Include="Common\DDPrint.cs" />
     <Compile Include="Common\DDResource.cs" />
-    <Compile Include="Common\DDResourceCommon.cs" />
     <Compile Include="Common\DDSaveData.cs" />
     <Compile Include="Common\DDScene.cs" />
     <Compile Include="Common\DDSceneUtils.cs" />

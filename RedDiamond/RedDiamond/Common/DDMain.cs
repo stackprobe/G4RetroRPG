@@ -91,7 +91,7 @@ namespace Charlotte.Common
 					throw new DDError();
 			});
 
-			DDDxUtils.SetMouseDispMode(DDGround.RO_MouseDispMode); // ? マウスを表示する。
+			DDUtils.SetMouseDispMode(DDGround.RO_MouseDispMode); // ? マウスを表示する。
 			DX.SetWindowSizeChangeEnableFlag(0); // ウィンドウの右下をドラッグで伸縮 1: する 0: しない
 
 			DX.SetDrawScreen(DX.DX_SCREEN_BACK);
@@ -205,7 +205,7 @@ namespace Charlotte.Common
 		//
 		public static void ApplyScreenSize(int w, int h)
 		{
-			bool mdm = DDDxUtils.GetMouseDispMode();
+			bool mdm = DDUtils.GetMouseDispMode();
 
 			//DDDerivationUtils.UnloadAll(); // -> DDPictureUtils.UnloadAll
 			DDPictureUtils.UnloadAll();
@@ -218,7 +218,7 @@ namespace Charlotte.Common
 			DX.SetDrawScreen(DX.DX_SCREEN_BACK);
 			DX.SetDrawMode(DX.DX_DRAWMODE_BILINEAR);
 
-			DDDxUtils.SetMouseDispMode(mdm);
+			DDUtils.SetMouseDispMode(mdm);
 		}
 
 		//

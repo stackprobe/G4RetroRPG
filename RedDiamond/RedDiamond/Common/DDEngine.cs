@@ -51,7 +51,7 @@ namespace Charlotte.Common
 		//
 		private static void CheckHz()
 		{
-			long currTime = DDDxUtils.GetCurrTime();
+			long currTime = DDUtils.GetCurrTime();
 
 			LangolierTime += 16L; // 16.666 == 60Hz
 			LangolierTime = LongTools.Range(LangolierTime, currTime - 100L, currTime + 100L);
@@ -59,7 +59,7 @@ namespace Charlotte.Common
 			while (currTime < LangolierTime)
 			{
 				Thread.Sleep(1);
-				currTime = DDDxUtils.GetCurrTime();
+				currTime = DDUtils.GetCurrTime();
 			}
 			FrameStartTime = currTime;
 		}
@@ -109,7 +109,7 @@ namespace Charlotte.Common
 
 			GC.Collect(0);
 
-			FrameProcessingMillis = (int)(DDDxUtils.GetCurrTime() - FrameStartTime);
+			FrameProcessingMillis = (int)(DDUtils.GetCurrTime() - FrameStartTime);
 
 			if (FrameProcessingMillis_Worst < FrameProcessingMillis || DDUtils.CountDown(ref FrameProcessingMillis_WorstFrame) == false)
 			{
@@ -136,7 +136,7 @@ namespace Charlotte.Common
 
 			ProcFrame++;
 			DDUtils.CountDown(ref FreezeInputFrame);
-			WindowIsActive = DDDxUtils.IsWindowActive();
+			WindowIsActive = DDUtils.IsWindowActive();
 
 			if (IntTools.IMAX < ProcFrame) // 192.9日程度でカンスト
 			{

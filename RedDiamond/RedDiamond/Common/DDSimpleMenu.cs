@@ -83,7 +83,7 @@ namespace Charlotte.Common
 				DDCurtain.DrawCurtain();
 
 				if (this.WallColor != null)
-					DX.DrawBox(0, 0, DDConsts.Screen_W, DDConsts.Screen_H, DDDxUtils.GetColor(this.WallColor), 1);
+					DX.DrawBox(0, 0, DDConsts.Screen_W, DDConsts.Screen_H, DDUtils.GetColor(this.WallColor), 1);
 
 				if (this.WallPicture != null)
 				{
@@ -206,7 +206,7 @@ namespace Charlotte.Common
 					DDCurtain.DrawCurtain();
 
 					if (this.WallColor != null)
-						DX.DrawBox(0, 0, DDConsts.Screen_W, DDConsts.Screen_H, DDDxUtils.GetColor(this.WallColor), 1);
+						DX.DrawBox(0, 0, DDConsts.Screen_W, DDConsts.Screen_H, DDUtils.GetColor(this.WallColor), 1);
 
 					if (this.WallPicture != null)
 					{
@@ -442,7 +442,7 @@ namespace Charlotte.Common
 				DDCurtain.DrawCurtain();
 
 				if (this.WallColor != null)
-					DX.DrawBox(0, 0, DDConsts.Screen_W, DDConsts.Screen_H, DDDxUtils.GetColor(this.WallColor), 1);
+					DX.DrawBox(0, 0, DDConsts.Screen_W, DDConsts.Screen_H, DDUtils.GetColor(this.WallColor), 1);
 
 				if (this.WallPicture != null)
 				{
