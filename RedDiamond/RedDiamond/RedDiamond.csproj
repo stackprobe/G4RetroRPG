@@ -90,6 +90,7 @@
     <Compile Include="Common\DDPictureLoaderUtils.cs" />
     <Compile Include="Common\DDPictureUtils.cs" />
     <Compile Include="Common\DDPrint.cs" />
+    <Compile Include="Common\DDRandom.cs" />
     <Compile Include="Common\DDResource.cs" />
     <Compile Include="Common\DDSaveData.cs" />
     <Compile Include="Common\DDScene.cs" />

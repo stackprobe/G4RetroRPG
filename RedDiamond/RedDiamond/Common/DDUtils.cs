@@ -421,9 +421,6 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static double Random() // ret: 0.0 以上 1.0 未満
-		{
-			return SecurityTools.CRandom.GetReal2();
-		}
+		public static DDRandom Random = new DDRandom();
 	}
 }
