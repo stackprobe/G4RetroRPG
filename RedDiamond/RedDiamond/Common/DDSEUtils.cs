@@ -95,7 +95,7 @@ namespace Charlotte.Common
 		{
 			int count = 0;
 
-			foreach (PlayInfo info in PlayInfos.ToArray())
+			foreach (PlayInfo info in PlayInfos)
 				if (info.SE == se && 2 <= ++count)
 					return;
 
