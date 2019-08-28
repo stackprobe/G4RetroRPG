@@ -1,6 +1,6 @@
-#include "C:\Factory\Common\all.h"
+#include "C:\Factory\SubTools\libs\MakeGZData.h"
 
-static void MaskGZData(autoBlock_t *fileData)
+void MaskGZData(autoBlock_t *fileData)
 {
 	uint index;
 
@@ -12,26 +12,4 @@ static void MaskGZData(autoBlock_t *fileData)
 
 		b_(fileData)[index] = bChr;
 	}
-}
-int main(int argc, char **argv)
-{
-	// sync > @ MaskGZData_main
-
-	char *file;
-	autoBlock_t *fileData;
-
-	errorCase(!argIs("MASK-GZ-DATA"));
-
-	file = nextArg();
-	cout("MaskGZData_file: %s\n", file);
-	fileData = readBinary(file);
-	LOGPOS();
-	MaskGZData(fileData);
-	LOGPOS();
-	writeBinary(file, fileData);
-	LOGPOS();
-	releaseAutoBlock(fileData);
-	LOGPOS();
-
-	// < sync
 }
