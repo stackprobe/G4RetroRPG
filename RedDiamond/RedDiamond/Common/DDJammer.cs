@@ -42,10 +42,14 @@ namespace Charlotte.Common
 		{
 			// app > @ MaskGZData
 
-			for (int index = 0; index < data.Length; index++)
-			{
-				data[index] = (byte)(((data[index] & 0xf0) >> 4) | ((data[index] & 0x0f) << 4));
-			}
+			// $_git:secretBegin
+//
+			/////////////////////////////////////////////////
+			//
+				////////////////////////////////////////////////////////////////////////////////
+			//
+//
+			// $_git:secretEnd
 
 			// < app
 		}
