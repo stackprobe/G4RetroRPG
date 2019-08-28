@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using DxLibDLL;
 using Charlotte.Tools;
 
 namespace Charlotte.Common
@@ -28,7 +30,7 @@ namespace Charlotte.Common
 		{
 			MaskGZData(data);
 			byte[] ret = ZipTools.Decompress(data);
-			MaskGZData(data); // 復元
+			//MaskGZData(data); // 復元
 			return ret;
 		}
 
@@ -41,6 +43,10 @@ namespace Charlotte.Common
 			{
 				data[0] ^= (0x1f ^ 0x44);
 				data[1] ^= (0x8b ^ 0x44);
+
+				// app > @ MaskGZData
+
+				// < app
 			}
 		}
 	}
