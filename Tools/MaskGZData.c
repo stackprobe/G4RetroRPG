@@ -2,7 +2,16 @@
 
 static void MaskGZData(autoBlock_t *fileData)
 {
-	// noop ???
+	uint index;
+
+	for(index = 0; index < getSize(fileData); index++)
+	{
+		uint bChr = b_(fileData)[index];
+
+		bChr = (bChr & 0xf0) >> 4 | (bChr & 0x0f) << 4;
+
+		b_(fileData)[index] = bChr;
+	}
 }
 int main(int argc, char **argv)
 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Threading;
 using DxLibDLL;
 using Charlotte.Tools;
 
@@ -39,15 +40,14 @@ namespace Charlotte.Common
 		//
 		private static void MaskGZData(byte[] data)
 		{
-			if (data.Length != 0)
+			// app > @ MaskGZData
+
+			for (int index = 0; index < data.Length; index++)
 			{
-				data[0] ^= (0x1f ^ 0x44);
-				data[1] ^= (0x8b ^ 0x44);
-
-				// app > @ MaskGZData
-
-				// < app
+				data[index] = (byte)(((data[index] & 0xf0) >> 4) | ((data[index] & 0x0f) << 4));
 			}
+
+			// < app
 		}
 	}
 }
