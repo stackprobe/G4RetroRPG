@@ -8,6 +8,6 @@ namespace Charlotte
 {
 	public class ResourceMusic
 	{
-		//public GameMusic Dummy = new GameMusic("Dummy.mp3");
+		//public DDMusic Dummy = new DDMusic("Dummy.mp3");
 	}
 }

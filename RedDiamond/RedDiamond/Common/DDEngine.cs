@@ -168,8 +168,6 @@ namespace Charlotte.Common
 
 			// app > @ leave EachFrame
 
-			Charlotte.Main01.NamedRect.Clear();
-
 			// < app
 		}
 

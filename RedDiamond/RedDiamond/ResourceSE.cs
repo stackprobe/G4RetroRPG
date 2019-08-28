@@ -8,6 +8,6 @@ namespace Charlotte
 {
 	public class ResourceSE
 	{
-		//public GameSE Dummy = new GameSE("Dummy.mp3");
+		//public DDSE Dummy = new DDSE("Dummy.mp3");
 	}
 }

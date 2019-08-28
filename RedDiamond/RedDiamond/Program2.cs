@@ -6,7 +6,6 @@ using DxLibDLL;
 using Charlotte.Common;
 using Charlotte.Tools;
 using Charlotte.Tests;
-using Charlotte.Main01;
 
 namespace Charlotte
 {
@@ -28,14 +27,14 @@ namespace Charlotte
 		{
 			DDAdditionalEvents.Ground_INIT = () =>
 			{
-				DDGround.RO_MouseDispMode = true;
+				//DDGround.RO_MouseDispMode = true;
 			};
 
 			DDAdditionalEvents.PostGameStart = () =>
 			{
 				// Font >
 
-				DDFontRegister.Add(@"riitf\RiiT_F.otf");
+				//DDFontRegister.Add(@"Font\Genkai-Mincho-font\genkai-mincho.ttf");
 
 				// < Font
 
@@ -48,8 +47,6 @@ namespace Charlotte
 				lines.Add(DateTime.Now.ToString()); // Dummy
 				lines.Add(DateTime.Now.ToString()); // Dummy
 
-				lines.Add("" + (SaveData.HasSaveData ? 1 : 0));
-
 				// 新しい項目をここへ追加...
 			};
 
@@ -61,8 +58,6 @@ namespace Charlotte
 				DDUtils.Noop(lines[c++]); // Dummy
 				DDUtils.Noop(lines[c++]); // Dummy
 
-				SaveData.HasSaveData = int.Parse(lines[c++]) != 0;
-
 				// 新しい項目をここへ追加...
 			};
 
@@ -71,8 +66,7 @@ namespace Charlotte
 
 		private void Main4()
 		{
-			//new Test0001().Test01();
-			Title.TitleMain();
+			new Test0001().Test01();
 		}
 	}
 }
