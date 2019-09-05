@@ -14,7 +14,7 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private List<IDDTask> Tasks = new List<IDDTask>();
+		private DDList<IDDTask> Tasks = new DDList<IDDTask>();
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
@@ -36,9 +36,13 @@ namespace Charlotte.Common
 				if (task.Routine() == false) // ? 終了
 				{
 					task.Dispose();
-					ExtraTools.FastDesertElement(this.Tasks, index--);
+
+					this.Tasks[index] = null;
+					//this.Tasks.FastRemoveAt(index--); // old
 				}
 			}
+			//this.Tasks.FastRemoveAll(task => task == null);
+			this.Tasks.RemoveAll(task => task == null);
 		}
 
 		//

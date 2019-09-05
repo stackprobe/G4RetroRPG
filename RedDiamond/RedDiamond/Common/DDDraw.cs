@@ -123,6 +123,18 @@ namespace Charlotte.Common
 			Extra.Bright = new I3Color(pR, pG, pB);
 		}
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void SetBright(I3Color color)
+		{
+			color.R = IntTools.Range(color.R, 0, 255);
+			color.G = IntTools.Range(color.G, 0, 255);
+			color.B = IntTools.Range(color.B, 0, 255);
+
+			Extra.Bright = color;
+		}
+
 		// < Extra
 
 		//

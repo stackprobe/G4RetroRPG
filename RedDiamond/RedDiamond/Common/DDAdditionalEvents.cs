@@ -17,6 +17,7 @@ namespace Charlotte.Common
 		{
 			//DDGround.RO_MouseDispMode = true;
 		};
+
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
@@ -24,6 +25,7 @@ namespace Charlotte.Common
 		{
 			//DDFontRegister.Add(@"Font\Genkai-Mincho-font\genkai-mincho.ttf");
 		};
+
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
@@ -31,6 +33,7 @@ namespace Charlotte.Common
 		{
 			//this.Visible = false;
 		};
+
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
@@ -38,6 +41,7 @@ namespace Charlotte.Common
 		{
 			lines.Add(DateTime.Now.ToString()); // Dummy
 		};
+
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
