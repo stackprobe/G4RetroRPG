@@ -89,5 +89,16 @@ namespace Charlotte.Common
 				}
 			}
 		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public IEnumerable<T> Iterate()
+		{
+			for (int index = 0; index < this.Count; index++)
+			{
+				yield return this.Inner[index];
+			}
+		}
 	}
 }
