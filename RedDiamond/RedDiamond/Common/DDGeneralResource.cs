@@ -18,6 +18,10 @@ namespace Charlotte.Common
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
 		public DDPicture WhiteBox = DDPictureLoaders.Standard(@"General\WhiteBox.png");
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public DDPicture WhiteCircle = DDPictureLoaders.Standard(@"General\WhiteCircle.png");
 
 		// 新しいリソースをここへ追加...
 	}
