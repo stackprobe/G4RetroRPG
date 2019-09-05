@@ -91,6 +91,7 @@
     <Compile Include="Common\DDGround.cs" />
     <Compile Include="Common\DDIEnumerableTask.cs" />
     <Compile Include="Common\DDInput.cs" />
+    <Compile Include="Common\DDList.cs" />
     <Compile Include="Common\DDRandom.cs" />
     <Compile Include="Common\IDDTask.cs" />
     <Compile Include="Common\DDJammer.cs" />

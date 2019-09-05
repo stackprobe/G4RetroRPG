@@ -5,17 +5,32 @@ using System.Text;
 
 namespace Charlotte.Common
 {
+	//
+	//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+	//
 	public class DDList<T>
 	{
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		private List<T> Inner = new List<T>();
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public int Count = 0;
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public void Clear()
 		{
 			this.Count = 0;
 		}
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public void Add(T element)
 		{
 			if (this.Count < this.Inner.Count)
@@ -26,6 +41,9 @@ namespace Charlotte.Common
 			this.Count++;
 		}
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public T this[int index]
 		{
 			get
@@ -39,6 +57,9 @@ namespace Charlotte.Common
 			}
 		}
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public void FastRemoveAt(int index)
 		{
 			this.Inner[index] = this.Inner[--this.Count];
@@ -46,6 +67,9 @@ namespace Charlotte.Common
 		}
 
 #if false // ---> RemoveAll()
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public void FastRemoveAll(Predicate<T> match)
 		{
 			for (int index = 0; index < this.Count; index++)
@@ -54,6 +78,9 @@ namespace Charlotte.Common
 		}
 #endif
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public void RemoveAll(Predicate<T> match)
 		{
 			for (int r = 0; r < this.Count; r++)
