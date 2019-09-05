@@ -66,18 +66,6 @@ namespace Charlotte.Common
 			this.Inner[this.Count] = default(T);
 		}
 
-#if false // ---> RemoveAll()
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		public void FastRemoveAll(Predicate<T> match)
-		{
-			for (int index = 0; index < this.Count; index++)
-				if (match(this.Inner[index]))
-					this.FastRemoveAt(index--);
-		}
-#endif
-
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
