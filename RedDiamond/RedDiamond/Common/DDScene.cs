@@ -33,5 +33,16 @@ namespace Charlotte.Common
 				return this.Denom - this.Numer;
 			}
 		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public double RemainingRate
+		{
+			get
+			{
+				return (double)this.Remaining / this.Denom;
+			}
+		}
 	}
 }
