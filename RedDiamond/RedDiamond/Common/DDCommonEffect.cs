@@ -97,7 +97,7 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private IEnumerable<bool> Sequencer()
+		private IEnumerable<bool> GetTaskSequence()
 		{
 			if (this.Pictures.Count == 0) // ? 画像が追加されていない。
 				throw new DDError();
@@ -150,7 +150,7 @@ namespace Charlotte.Common
 		//
 		public Func<bool> GetTask()
 		{
-			return EnumerableTools.Supplier(this.Sequencer());
+			return EnumerableTools.Supplier(this.GetTaskSequence());
 		}
 
 		//
