@@ -12,7 +12,7 @@ COPY /B RedDiamond\RedDiamond\bin\Release\DxLibDotNet.dll out
 C:\Factory\Tools\xcp.exe doc out
 C:\Factory\Tools\xcp.exe C:\Dev\Fairy\Donut2\doc out
 
-C:\Factory\SubTools\zip.exe /PE- /G out RedDiamond
+C:\Factory\SubTools\zip.exe /PE- /RVE- /G out RedDiamond
 C:\Factory\Tools\summd5.exe /M out
 
 PAUSE
