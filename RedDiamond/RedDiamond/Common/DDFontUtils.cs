@@ -57,21 +57,51 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static void DrawString(int x, int y, string str, DDFont font, bool tategakiFlag = false, I3Color color = null, I3Color edgeColor = null)
+		public static void DrawString(int x, int y, string str, DDFont font, bool tategakiFlag = false)
 		{
-			if (color == null)
-				color = new I3Color(255, 255, 255);
+			DrawString(x, y, str, font, tategakiFlag, new I3Color(255, 255, 255));
+		}
 
-			if (edgeColor == null)
-				edgeColor = new I3Color(0, 0, 0);
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void DrawString(int x, int y, string str, DDFont font, bool tategakiFlag, I3Color color)
+		{
+			DrawString(x, y, str, font, tategakiFlag, color, new I3Color(0, 0, 0));
+		}
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void DrawString(int x, int y, string str, DDFont font, bool tategakiFlag, I3Color color, I3Color edgeColor)
+		{
 			DX.DrawStringToHandle(x, y, str, DDUtils.GetColor(color), font.GetHandle(), DDUtils.GetColor(edgeColor), tategakiFlag ? 1 : 0);
 		}
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static void DrawString_XCenter(int x, int y, string str, DDFont font, bool tategakiFlag = false, I3Color color = null, I3Color edgeColor = null)
+		public static void DrawString_XCenter(int x, int y, string str, DDFont font, bool tategakiFlag = false)
+		{
+			x -= GetDrawStringWidth(str, font, tategakiFlag) / 2;
+
+			DrawString(x, y, str, font, tategakiFlag);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void DrawString_XCenter(int x, int y, string str, DDFont font, bool tategakiFlag, I3Color color)
+		{
+			x -= GetDrawStringWidth(str, font, tategakiFlag) / 2;
+
+			DrawString(x, y, str, font, tategakiFlag, color);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void DrawString_XCenter(int x, int y, string str, DDFont font, bool tategakiFlag, I3Color color, I3Color edgeColor)
 		{
 			x -= GetDrawStringWidth(str, font, tategakiFlag) / 2;
 
