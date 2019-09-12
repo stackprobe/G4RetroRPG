@@ -89,11 +89,9 @@
     <Compile Include="Common\DDFontUtils.cs" />
     <Compile Include="Common\DDGeneralResource.cs" />
     <Compile Include="Common\DDGround.cs" />
-    <Compile Include="Common\DDIEnumerableTask.cs" />
     <Compile Include="Common\DDInput.cs" />
     <Compile Include="Common\DDList.cs" />
     <Compile Include="Common\DDRandom.cs" />
-    <Compile Include="Common\IDDTask.cs" />
     <Compile Include="Common\DDJammer.cs" />
     <Compile Include="Common\DDKey.cs" />
     <Compile Include="Common\DDMain.cs" />

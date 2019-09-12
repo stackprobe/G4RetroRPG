@@ -125,25 +125,6 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private class PrintTask : IDDTask
-		{
-			public PrintInfo Info;
-
-			public bool Routine()
-			{
-				PrintMain(this.Info);
-				return false;
-			}
-
-			public void Dispose()
-			{
-				// noop
-			}
-		}
-
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
 		public static void Print(string line)
 		{
 			P_Info.X = P_BaseX + P_X;
@@ -156,9 +137,10 @@ namespace Charlotte.Common
 			}
 			else
 			{
-				P_Info.TL.Add(new PrintTask()
+				P_Info.TL.Add(() =>
 				{
-					Info = P_Info,
+					PrintMain(P_Info);
+					return false;
 				});
 			}
 

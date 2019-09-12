@@ -14,12 +14,12 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private DDList<IDDTask> Tasks = new DDList<IDDTask>();
+		private DDList<Func<bool>> Tasks = new DDList<Func<bool>>();
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public void Add(IDDTask task)
+		public void Add(Func<bool> task)
 		{
 			this.Tasks.Add(task);
 		}
@@ -31,11 +31,8 @@ namespace Charlotte.Common
 		{
 			for (int index = 0; index < this.Tasks.Count; index++)
 			{
-				IDDTask task = this.Tasks[index];
-
-				if (task.Routine() == false) // ? 終了
+				if (this.Tasks[index]() == false) // ? 終了
 				{
-					task.Dispose();
 					this.Tasks[index] = null;
 				}
 			}
@@ -47,10 +44,6 @@ namespace Charlotte.Common
 		//
 		public void Clear()
 		{
-			for (int index = 0; index < this.Tasks.Count; index++)
-			{
-				this.Tasks[index].Dispose();
-			}
 			this.Tasks.Clear();
 		}
 
