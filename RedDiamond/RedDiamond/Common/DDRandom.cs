@@ -72,9 +72,25 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
+		public double Real() // ret: 0.0 <=, <= 1.0
+		{
+			return this.Next() / (double)uint.MaxValue;
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public double Real2() // ret: 0.0 <=, < 1.0
 		{
 			return this.Next() / (double)(uint.MaxValue + 1L);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public double Real3() // ret: 0.0 <, < 1.0
+		{
+			return this.Next() / (double)(uint.MaxValue + 1L) + 0.5;
 		}
 	}
 }
