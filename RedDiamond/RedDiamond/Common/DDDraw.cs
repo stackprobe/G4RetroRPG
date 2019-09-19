@@ -437,6 +437,22 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
+		public static void DrawFree(DDPicture picture, D2Point lt, D2Point rt, D2Point rb, D2Point lb)
+		{
+			DrawFree(picture, lt.X, lt.Y, rt.X, rt.Y, rb.X, rb.Y, lb.X, lb.Y);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void DrawFree(DDPicture picture, P4Poly poly)
+		{
+			DrawFree(picture, poly.LT, poly.RT, poly.RB, poly.LB);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public static void DrawRect_LTRB(DDPicture picture, double l, double t, double r, double b)
 		{
 			if (
@@ -465,6 +481,14 @@ namespace Charlotte.Common
 		public static void DrawRect(DDPicture picture, double l, double t, double w, double h)
 		{
 			DrawRect_LTRB(picture, l, t, l + w, t + h);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void DrawRect(DDPicture picture, D4Rect rect)
+		{
+			DrawRect(picture, rect.L, rect.T, rect.W, rect.H);
 		}
 
 		//
