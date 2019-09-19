@@ -5,10 +5,7 @@ using System.Text;
 
 namespace Charlotte.Common
 {
-	//
-	//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-	//
-	public class DDScene
+	public struct DDScene
 	{
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
@@ -18,10 +15,26 @@ namespace Charlotte.Common
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
 		public int Denom;
+
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public double Rate;
+		public DDScene(int numer, int denom)
+		{
+			this.Numer = numer;
+			this.Denom = denom;
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public double Rate
+		{
+			get
+			{
+				return this.Numer / (double)this.Denom;
+			}
+		}
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
@@ -41,7 +54,7 @@ namespace Charlotte.Common
 		{
 			get
 			{
-				return (double)this.Remaining / this.Denom;
+				return this.Remaining / (double)this.Denom;
 			}
 		}
 	}
