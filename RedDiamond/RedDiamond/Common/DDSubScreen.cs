@@ -58,6 +58,8 @@ namespace Charlotte.Common
 			this.W = -1;
 			this.H = -1;
 			this.AFlag = false;
+
+			this.Picture = null;
 		}
 
 		//
@@ -103,6 +105,31 @@ namespace Charlotte.Common
 		public I2Size GetSize()
 		{
 			return new I2Size(this.W, this.H);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		private DDPicture Picture = null;
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public DDPicture ToPicture()
+		{
+			if (this.Picture == null)
+				this.Picture = DDPictureLoaders2.Wrapper(this);
+
+			return this.Picture;
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public IDisposable Section()
+		{
+			this.ChangeDrawScreen();
+			return new AnonyDisposable(() => DDSubScreenUtils.RestoreDrawScreen());
 		}
 	}
 }
