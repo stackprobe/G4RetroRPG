@@ -18,7 +18,15 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public int Count = 0;
+		public int Count { get; private set; }
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public DDList()
+		{
+			//this.Count = 0;
+		}
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
@@ -95,10 +103,14 @@ namespace Charlotte.Common
 		//
 		public IEnumerable<T> Iterate()
 		{
+#if false
+			return this.Inner; // 要素が変更・追加されると例外を投げるっぽい。
+#else
 			for (int index = 0; index < this.Count; index++)
 			{
 				yield return this.Inner[index];
 			}
+#endif
 		}
 	}
 }

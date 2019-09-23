@@ -118,6 +118,7 @@
     <Compile Include="Common\DDSubScreen.cs" />
     <Compile Include="Common\DDSubScreenUtils.cs" />
     <Compile Include="Common\DDSystem.cs" />
+    <Compile Include="Common\DDTable.cs" />
     <Compile Include="Common\DDTaskList.cs" />
     <Compile Include="Common\DDUserDatStrings.cs" />
     <Compile Include="Common\DDUtils.cs" />
