@@ -28,6 +28,15 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
+		public DDTable(int w, int h, Func<int, int, T> getCell)
+			: this(w, h)
+		{
+			this.SetAllCell(getCell);
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public DDTable(int w, int h)
 		{
 			if (
@@ -39,6 +48,48 @@ namespace Charlotte.Common
 			this.Inner = new T[w * h];
 			this.W = w;
 			this.H = h;
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public void SetAllCell(Func<int, int, T> getCell)
+		{
+			for (int x = 0; x < this.W; x++)
+			{
+				for (int y = 0; y < this.H; y++)
+				{
+					this[x, y] = getCell(x, y);
+				}
+			}
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public void GetAllCell(Action<int, int, T> setCell)
+		{
+			for (int x = 0; x < this.W; x++)
+			{
+				for (int y = 0; y < this.H; y++)
+				{
+					setCell(x, y, this[x, y]);
+				}
+			}
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public void ChangeAllCell(Func<int, int, T, T> chgCell)
+		{
+			for (int x = 0; x < this.W; x++)
+			{
+				for (int y = 0; y < this.H; y++)
+				{
+					this[x, y] = chgCell(x, y, this[x, y]);
+				}
+			}
 		}
 
 		//
