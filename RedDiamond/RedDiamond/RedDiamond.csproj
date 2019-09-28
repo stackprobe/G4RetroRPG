@@ -125,6 +125,7 @@
     <Compile Include="Common\DDWin32.cs" />
     <Compile Include="Game3Common\Crash.cs" />
     <Compile Include="Game3Common\CrashUtils.cs" />
+    <Compile Include="Game3Common\CrashView.cs" />
     <Compile Include="Game3Common\CResource.cs" />
     <Compile Include="Game3Common\SceneKeeper.cs" />
     <Compile Include="Game3Common\SlideUtils.cs" />
