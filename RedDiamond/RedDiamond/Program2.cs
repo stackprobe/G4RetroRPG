@@ -83,7 +83,7 @@ namespace Charlotte
 
 		private void Main4_Release()
 		{
-			throw null; // TODO
+			new Test0001().Test01(); // 仮 仮 仮 仮 仮 仮 仮 仮 仮 仮
 		}
 	}
 }
