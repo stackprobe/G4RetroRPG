@@ -10,7 +10,8 @@ namespace Charlotte.Common
 	//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 	//
 	/// <summary>
-	/// Unload()する必要なし。必要あり -> DDPictureLoader
+	/// Unload()する必要なし。
+	/// 必要あり -> DDPictureLoader
 	/// </summary>
 	public static class DDPictureLoaders2
 	{
