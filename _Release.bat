@@ -15,4 +15,4 @@ C:\Factory\Tools\xcp.exe C:\Dev\Fairy\Donut2\doc out
 C:\Factory\SubTools\zip.exe /PE- /RVE- /G out RedDiamond
 C:\Factory\Tools\summd5.exe /M out
 
-PAUSE
+IF NOT "%1" == "/-P" PAUSE
