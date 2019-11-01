@@ -18,24 +18,49 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static DDPicture Wrapper(int handle, int w, int h)
+		private class PictureWrapper : DDPicture
 		{
-			DDPicture.PictureInfo info = new DDPicture.PictureInfo()
-			{
-				Handle = handle,
-				W = w,
-				H = h,
-			};
+			public Func<int> Func_GetHandle;
+			public DDPicture.PictureInfo Info;
 
-			return new DDPicture(() => info, v => { }, v => { });
+			// <---- prm
+
+			public PictureWrapper()
+				: base(() => null, v => { }, v => { })
+			{ }
+
+			protected override DDPicture.PictureInfo GetInfo()
+			{
+				this.Info.Handle = this.Func_GetHandle();
+				return this.Info;
+			}
 		}
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static DDPicture Wrapper(int handle, I2Size size)
+		public static DDPicture Wrapper(Func<int> getHandle, int w, int h)
 		{
-			return Wrapper(handle, size.W, size.H);
+			DDPicture.PictureInfo info = new DDPicture.PictureInfo()
+			{
+				Handle = -1,
+				W = w,
+				H = h,
+			};
+
+			return new PictureWrapper()
+			{
+				Func_GetHandle = getHandle,
+				Info = info,
+			};
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static DDPicture Wrapper(Func<int> getHandle, I2Size size)
+		{
+			return Wrapper(getHandle, size.W, size.H);
 		}
 
 		//
@@ -43,7 +68,7 @@ namespace Charlotte.Common
 		//
 		public static DDPicture Wrapper(DDSubScreen subScreen)
 		{
-			return Wrapper(subScreen.GetHandle(), subScreen.GetSize());
+			return Wrapper(() => subScreen.GetHandle(), subScreen.GetSize());
 		}
 	}
 }
