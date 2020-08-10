@@ -13,15 +13,15 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public DDPicture Dummy = DDPictureLoaders.Standard(@"General\Dummy.png");
+		public DDPicture Dummy = DDPictureLoaders.Standard(@"Fairy\Donut3\General\Dummy.png");
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public DDPicture WhiteBox = DDPictureLoaders.Standard(@"General\WhiteBox.png");
+		public DDPicture WhiteBox = DDPictureLoaders.Standard(@"Fairy\Donut3\General\WhiteBox.png");
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public DDPicture WhiteCircle = DDPictureLoaders.Standard(@"General\WhiteCircle.png");
+		public DDPicture WhiteCircle = DDPictureLoaders.Standard(@"Fairy\Donut3\General\WhiteCircle.png");
 
 		// 新しいリソースをここへ追加...
 	}

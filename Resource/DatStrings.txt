@@ -1,3 +1,0 @@
-Title=RedDiamond
-Author=cerulean.charlotte
-Copyright=(c) 2019 cerulean.charlotte

@@ -171,7 +171,7 @@ namespace Charlotte.Common
 		//
 		private static IntPtr GetAppIcon()
 		{
-			using (MemoryStream mem = new MemoryStream(DDResource.Load(@"General\game_app.ico")))
+			using (MemoryStream mem = new MemoryStream(DDResource.Load(@"Fairy\Donut3\General\game_app.ico")))
 			{
 				return new Icon(mem).Handle;
 			}

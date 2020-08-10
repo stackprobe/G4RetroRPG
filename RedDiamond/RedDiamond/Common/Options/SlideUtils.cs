@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 
-namespace Charlotte.Game3Common
+namespace Charlotte.Common.Options
 {
 	//
 	//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c

@@ -25,7 +25,7 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public const string ResourceDir = @"..\..\..\..\Resource";
+		public const string ResourceDir = @"C:\Dat\Resource";
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//

@@ -19,7 +19,7 @@ namespace Charlotte.Common
 		{
 			List<byte[]> blocks = new List<byte[]>();
 
-			// for Donut2
+			// for Donut3
 			{
 				List<string> lines = new List<string>();
 
@@ -108,7 +108,7 @@ namespace Charlotte.Common
 
 			// 項目が増えた場合を想定して try ～ catch しておく。
 
-			try // for Donut2
+			try // for Donut3
 			{
 				// TODO int.Parse -> IntTools.ToInt
 

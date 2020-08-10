@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 
-namespace Charlotte.Game3Common
+namespace Charlotte.Common.Options
 {
 	public struct Crash
 	{
