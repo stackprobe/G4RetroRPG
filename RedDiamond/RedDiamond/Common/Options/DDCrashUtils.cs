@@ -10,7 +10,7 @@ namespace Charlotte.Common.Options
 	//
 	//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 	//
-	public static class CrashUtils
+	public static class DDCrashUtils
 	{
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
@@ -27,9 +27,9 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static Crash None()
+		public static DDCrash None()
 		{
-			return new Crash()
+			return new DDCrash()
 			{
 				Kind = Kind_e.NONE,
 			};
@@ -38,9 +38,9 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static Crash Point(D2Point pt)
+		public static DDCrash Point(D2Point pt)
 		{
-			return new Crash()
+			return new DDCrash()
 			{
 				Kind = Kind_e.POINT,
 				Pt = pt,
@@ -50,9 +50,9 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static Crash Circle(D2Point pt, double r)
+		public static DDCrash Circle(D2Point pt, double r)
 		{
-			return new Crash()
+			return new DDCrash()
 			{
 				Kind = Kind_e.CIRCLE,
 				Pt = pt,
@@ -63,7 +63,7 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static Crash Rect_CenterSize(D2Point centerPt, D2Size size)
+		public static DDCrash Rect_CenterSize(D2Point centerPt, D2Size size)
 		{
 			return Rect(new D4Rect(centerPt.X - size.W / 2.0, centerPt.Y - size.H / 2.0, size.W, size.H));
 		}
@@ -71,9 +71,9 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static Crash Rect(D4Rect rect)
+		public static DDCrash Rect(D4Rect rect)
 		{
-			return new Crash()
+			return new DDCrash()
 			{
 				Kind = Kind_e.RECT,
 				Rect = rect,
@@ -83,31 +83,31 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static Crash Multi(params Crash[] crashes)
+		public static DDCrash Multi(params DDCrash[] crashes)
 		{
-			return Multi((IEnumerable<Crash>)crashes);
+			return Multi((IEnumerable<DDCrash>)crashes);
 		}
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static Crash Multi(IEnumerable<Crash> crashes)
+		public static DDCrash Multi(IEnumerable<DDCrash> crashes)
 		{
-			return new Crash()
+			return new DDCrash()
 			{
 				Kind = Kind_e.MULTI,
-				Cs = crashes is Crash[] ? (Crash[])crashes : crashes.ToArray(),
+				Cs = crashes is DDCrash[] ? (DDCrash[])crashes : crashes.ToArray(),
 			};
 		}
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static bool IsCrashed(Crash a, Crash b)
+		public static bool IsCrashed(DDCrash a, DDCrash b)
 		{
 			if ((int)b.Kind < (int)a.Kind)
 			{
-				Crash tmp = a;
+				DDCrash tmp = a;
 				a = b;
 				b = tmp;
 			}
@@ -155,14 +155,14 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private static bool IsCrashed_Any_Multi(Crash a, Crash b)
+		private static bool IsCrashed_Any_Multi(DDCrash a, DDCrash b)
 		{
 			//if (b.Kind != Kind_e.MULTI) throw null; // never
 
 			if (a.Kind == Kind_e.MULTI)
 				return IsCrashed_Multi_Multi(a, b);
 
-			foreach (Crash crash in b.Cs)
+			foreach (DDCrash crash in b.Cs)
 				if (IsCrashed(a, crash))
 					return true;
 
@@ -172,13 +172,13 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private static bool IsCrashed_Multi_Multi(Crash a, Crash b)
+		private static bool IsCrashed_Multi_Multi(DDCrash a, DDCrash b)
 		{
 			//if (a.Kind != Kind_e.MULTI) throw null; // never
 			//if (b.Kind != Kind_e.MULTI) throw null; // never
 
-			foreach (Crash ac in a.Cs)
-				foreach (Crash bc in b.Cs)
+			foreach (DDCrash ac in a.Cs)
+				foreach (DDCrash bc in b.Cs)
 					if (IsCrashed(ac, bc))
 						return true;
 

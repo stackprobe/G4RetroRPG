@@ -10,7 +10,7 @@ namespace Charlotte.Common.Options
 	//
 	//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 	//
-	public static class CResource
+	public static class DDCResource
 	{
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c

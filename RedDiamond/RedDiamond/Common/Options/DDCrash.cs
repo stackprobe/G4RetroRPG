@@ -6,12 +6,12 @@ using Charlotte.Tools;
 
 namespace Charlotte.Common.Options
 {
-	public struct Crash
+	public struct DDCrash
 	{
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public CrashUtils.Kind_e Kind;
+		public DDCrashUtils.Kind_e Kind;
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
@@ -27,14 +27,14 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public Crash[] Cs;
+		public DDCrash[] Cs;
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public bool IsCrashed(Crash other)
+		public bool IsCrashed(DDCrash other)
 		{
-			return CrashUtils.IsCrashed(this, other);
+			return DDCrashUtils.IsCrashed(this, other);
 		}
 	}
 }

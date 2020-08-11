@@ -10,7 +10,7 @@ namespace Charlotte.Common.Options
 	//
 	//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 	//
-	public class SceneKeeper
+	public class DDSceneKeeper
 	{
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
@@ -24,7 +24,7 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public SceneKeeper(int frameMax)
+		public DDSceneKeeper(int frameMax)
 		{
 			if (frameMax < 1 || IntTools.IMAX < frameMax)
 				throw new DDError();

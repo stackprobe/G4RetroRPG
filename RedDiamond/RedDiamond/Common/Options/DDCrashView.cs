@@ -10,7 +10,7 @@ namespace Charlotte.Common.Options
 	//
 	//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 	//
-	public class CrashView : IDisposable
+	public class DDCrashView : IDisposable
 	{
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
@@ -29,7 +29,7 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public CrashView()
+		public DDCrashView()
 		{
 			using (this.MyScreen.Section())
 			{
@@ -40,23 +40,23 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public void Draw(Crash crash)
+		public void Draw(DDCrash crash)
 		{
-			Draw(new Crash[] { crash });
+			Draw(new DDCrash[] { crash });
 		}
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public void Draw(Crash crash, I3Color color)
+		public void Draw(DDCrash crash, I3Color color)
 		{
-			Draw(new Crash[] { crash }, color);
+			Draw(new DDCrash[] { crash }, color);
 		}
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public void Draw(IEnumerable<Crash> crashes)
+		public void Draw(IEnumerable<DDCrash> crashes)
 		{
 			Draw(crashes, DefaultColor);
 		}
@@ -64,38 +64,38 @@ namespace Charlotte.Common.Options
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public void Draw(IEnumerable<Crash> crashes, I3Color color)
+		public void Draw(IEnumerable<DDCrash> crashes, I3Color color)
 		{
 			DDDraw.SetBright(color);
 
 			using (this.MyScreen.Section())
 			{
-				Queue<IEnumerable<Crash>> q = new Queue<IEnumerable<Crash>>();
+				Queue<IEnumerable<DDCrash>> q = new Queue<IEnumerable<DDCrash>>();
 
 				q.Enqueue(crashes);
 
 				while (1 <= q.Count)
 				{
-					foreach (Crash crash in q.Dequeue())
+					foreach (DDCrash crash in q.Dequeue())
 					{
 						switch (crash.Kind)
 						{
-							case CrashUtils.Kind_e.NONE:
+							case DDCrashUtils.Kind_e.NONE:
 								break;
 
-							case CrashUtils.Kind_e.POINT:
+							case DDCrashUtils.Kind_e.POINT:
 								DDDraw.DrawBegin(DDGround.GeneralResource.WhiteBox, crash.Pt.X - DDGround.ICamera.X, crash.Pt.Y - DDGround.ICamera.Y);
 								DDDraw.DrawSetSize(POINT_WH, POINT_WH);
 								DDDraw.DrawEnd();
 								break;
 
-							case CrashUtils.Kind_e.CIRCLE:
+							case DDCrashUtils.Kind_e.CIRCLE:
 								DDDraw.DrawBegin(DDGround.GeneralResource.WhiteCircle, crash.Pt.X - DDGround.ICamera.X, crash.Pt.Y - DDGround.ICamera.Y);
 								DDDraw.DrawSetSize(crash.R * 2.0, crash.R * 2.0);
 								DDDraw.DrawEnd();
 								break;
 
-							case CrashUtils.Kind_e.RECT:
+							case DDCrashUtils.Kind_e.RECT:
 								DDDraw.DrawRect(
 									DDGround.GeneralResource.WhiteBox,
 									crash.Rect.L - DDGround.ICamera.X,
@@ -105,7 +105,7 @@ namespace Charlotte.Common.Options
 									);
 								break;
 
-							case CrashUtils.Kind_e.MULTI:
+							case DDCrashUtils.Kind_e.MULTI:
 								q.Enqueue(crash.Cs);
 								break;
 
