@@ -382,8 +382,6 @@ namespace Charlotte.Common
 			// app > @ leave DrawPicMain
 
 			// < app
-
-			DDAdditionalEvents.PostDrawPicMain();
 		}
 
 		//

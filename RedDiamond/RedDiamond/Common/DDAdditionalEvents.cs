@@ -51,14 +51,5 @@ namespace Charlotte.Common
 
 			DDUtils.Noop(lines[c++]); // Dummy
 		};
-
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		public static Action PostDrawPicMain = () => { };
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		public static Action PostEachFrame = () => { };
 	}
 }

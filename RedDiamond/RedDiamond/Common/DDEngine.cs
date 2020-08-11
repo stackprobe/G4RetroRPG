@@ -157,8 +157,6 @@ namespace Charlotte.Common
 			// app > @ leave EachFrame
 
 			// < app
-
-			DDAdditionalEvents.PostEachFrame();
 		}
 
 		//
