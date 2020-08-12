@@ -1,6 +1,11 @@
 C:\Factory\Tools\RDMD.exe /RC out
 
-C:\Factory\SubTools\makeDDResourceFile.exe C:\Dat\Resource out\Resource.dat C:\Factory\Program\MaskGZDataForDonut3\MaskGZData.exe
+C:\Factory\SubTools\makeDDResourceFile.exe ^
+	C:\Dat\Resource ^
+	/SD Fairy\Donut3\General ^
+	/SD Etoile\RedDiamond ^
+	out\Resource.dat ^
+	C:\Factory\Program\MaskGZDataForDonut3\MaskGZData.exe
 
 C:\Factory\SubTools\CallConfuserCLI.exe RedDiamond\RedDiamond\bin\Release\RedDiamond.exe out\RedDiamond.exe
 rem COPY /B RedDiamond\RedDiamond\bin\Release\RedDiamond.exe out

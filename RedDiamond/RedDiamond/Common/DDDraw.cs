@@ -229,9 +229,7 @@ namespace Charlotte.Common
 		//
 		private static void DrawPicMain(DrawInfo info)
 		{
-			// app > @ enter DrawPicMain
-
-			// < app
+			// app 設置予定 @ enter DrawPicMain
 
 			if (info.Extra.A != -1)
 			{

@@ -12,6 +12,8 @@ namespace Charlotte.Common
 	//
 	public static class DDUserDatStrings
 	{
+		// Properties.dat のオリジナルは C:\Dev\Fairy\Donut3\doc にある。
+
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
