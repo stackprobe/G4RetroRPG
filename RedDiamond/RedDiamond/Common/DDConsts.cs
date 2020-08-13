@@ -31,19 +31,13 @@ namespace Charlotte.Common
 		//
 		public const string UserDatStringsFile = "Properties.dat";
 
-#if false
-		// 例 >
+#if false // 例
+		// discmt >
 
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
 		public const int Screen_W = 800;
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
 		public const int Screen_H = 600;
 
-		// < 例
+		// < discmt
 #else
 		// app > @ Screen_WH
 
