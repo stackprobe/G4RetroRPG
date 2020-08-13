@@ -18,6 +18,6 @@ namespace Charlotte
 		}
 
 		public const string APP_IDENT = "{c69c45fc-c710-40ed-ad6d-d905db64d907}";
-		public const string APP_TITLE = "RedDiamond";
+		public const string APP_TITLE = "G4RetroRPG";
 	}
 }
