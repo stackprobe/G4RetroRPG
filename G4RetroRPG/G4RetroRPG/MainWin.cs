@@ -17,7 +17,7 @@ namespace Charlotte
 {
 	public partial class MainWin : Form
 	{
-		// sync > @ G2_MainWin
+		// sync > @ G3_MainWin
 
 		#region ALT_F4 抑止
 
