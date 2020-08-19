@@ -80,9 +80,9 @@ namespace Charlotte.Common
 
 				// app > @ Save
 
-				lines.Add("Donut3-SaveData"); // Dummy
-				lines.Add("Donut3-SaveData"); // Dummy
-				lines.Add("Donut3-SaveData"); // Dummy
+				lines.Add("G4RetroRPG-SaveData"); // Dummy
+
+				// 新しい項目をここへ追加...
 
 				// < app
 
@@ -178,8 +178,8 @@ namespace Charlotte.Common
 					// app > @ Load
 
 					DDUtils.Noop(lines[c++]); // Dummy
-					DDUtils.Noop(lines[c++]); // Dummy
-					DDUtils.Noop(lines[c++]); // Dummy
+
+					// 新しい項目をここへ追加...
 
 					// < app
 				}
