@@ -72,7 +72,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\DDAdditionalEvents.cs" />
     <Compile Include="Common\DDCoffeeBreak.cs" />
     <Compile Include="Common\DDCommonEffect.cs" />
     <Compile Include="Common\DDConfig.cs" />
