@@ -78,7 +78,7 @@ namespace Charlotte.Common
 			{
 				List<string> lines = new List<string>();
 
-				// app > Save
+				// app > @ Save
 
 				lines.Add("Donut3-SaveData"); // Dummy
 				lines.Add("Donut3-SaveData"); // Dummy
@@ -175,7 +175,7 @@ namespace Charlotte.Common
 
 				try // アプリ固有のセーブデータ
 				{
-					// app > Load
+					// app > @ Load
 
 					DDUtils.Noop(lines[c++]); // Dummy
 					DDUtils.Noop(lines[c++]); // Dummy
