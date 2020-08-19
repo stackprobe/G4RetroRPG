@@ -46,6 +46,7 @@ namespace Charlotte
 		}
 
 		public static MainWin I = null;
+		public Action PostGameStart_G3 = null;
 
 		private void MainWin_Shown(object sender, EventArgs e)
 		{
@@ -59,13 +60,15 @@ namespace Charlotte
 
 			bool[] aliving = new bool[] { true };
 
-			DDAdditionalEvents.PostGameStart_G2 = () =>
+			this.PostGameStart_G3 = () =>
 			{
 				this.BeginInvoke((MethodInvoker)delegate
 				{
 					if (aliving[0])
 						this.Visible = false;
 				});
+
+				this.PostGameStart_G3 = null;
 			};
 
 			Thread th = new Thread(() =>
