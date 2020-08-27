@@ -30,6 +30,10 @@ namespace Charlotte.Common
 		//
 		public static I4Rect MonitorRect;
 
+		// DDConsts.Screen_WH ... システム上の画面サイズ
+		// RealScreen_WH ... 実際の画面サイズ
+		// RealScreenDraw_LTWH ... ゲーム画面を描画する位置とサイズ, _W == -1 の場合は { 0, 0, RealScreen_W, RealScreen_H } に描画する。
+
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
