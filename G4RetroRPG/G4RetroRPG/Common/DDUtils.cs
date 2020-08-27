@@ -25,6 +25,11 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
+		/// <summary>
+		/// <para>コンピュータを起動してから経過した時間を返す。</para>
+		/// <para>ミリ秒</para>
+		/// </summary>
+		/// <returns>時間</returns>
 		public static long GetCurrTime()
 		{
 			return DX.GetNowHiPerformanceCount() / 1000L;
@@ -120,7 +125,7 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static void Range(ref double value, double minval, double maxval)
+		public static void ToRange(ref double value, double minval, double maxval)
 		{
 			value = DoubleTools.ToRange(value, minval, maxval);
 		}
@@ -128,7 +133,7 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public static void Range(ref int value, int minval, int maxval)
+		public static void ToRange(ref int value, int minval, int maxval)
 		{
 			value = IntTools.ToRange(value, minval, maxval);
 		}
@@ -240,7 +245,7 @@ namespace Charlotte.Common
 		//
 		public static double GetAngle(D2Point pt)
 		{
-			return GetDistance(pt.X, pt.Y);
+			return GetAngle(pt.X, pt.Y);
 		}
 
 		//
@@ -398,8 +403,10 @@ namespace Charlotte.Common
 		{
 			if (status)
 			{
-				counter = Math.Max(0, counter);
-				counter++;
+				if (counter < 0)
+					counter = 1;
+				else
+					counter++;
 			}
 			else
 				counter = 0 < counter ? -1 : 0;
