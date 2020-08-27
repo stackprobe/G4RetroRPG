@@ -14,7 +14,7 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public List<DDPicture> Pictures = new List<DDPicture>();
+		public DDPicture[] Pictures;
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
@@ -85,15 +85,12 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public DDCommonEffect()
-		{ }
-
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		public DDCommonEffect(DDPicture picture)
+		public DDCommonEffect(params DDPicture[] pictures)
 		{
-			this.Pictures.Add(picture);
+			this.Pictures = pictures;
+
+			if (this.Pictures.Length == 0) // ? 画像が無い。
+				throw new DDError();
 		}
 
 		//
@@ -101,9 +98,6 @@ namespace Charlotte.Common
 		//
 		private IEnumerable<bool> GetTaskSequence()
 		{
-			if (this.Pictures.Count == 0) // ? 画像が追加されていない。
-				throw new DDError();
-
 			int outOfCameraFrame = 0;
 
 			for (int frame = 0; ; frame++)
@@ -112,7 +106,7 @@ namespace Charlotte.Common
 				double drawY = this.Y - DDGround.ICamera.Y;
 
 				DDDraw.SetAlpha(this.A);
-				DDDraw.DrawBegin(this.Pictures[(frame / this.FramePerPicture) % this.Pictures.Count], drawX, drawY);
+				DDDraw.DrawBegin(this.Pictures[(frame / this.FramePerPicture) % this.Pictures.Length], drawX, drawY);
 				DDDraw.DrawRotate(this.R);
 				DDDraw.DrawZoom(this.Z);
 				DDDraw.DrawEnd();
@@ -130,7 +124,6 @@ namespace Charlotte.Common
 				this.AAdd += this.AAdd2;
 
 				if (DDUtils.IsOutOfScreen(new D2Point(drawX, drawY)))
-				//if (DDUtils.IsOutOfCamera(new D2Point(this.X, this.Y)))
 				{
 					outOfCameraFrame++;
 
