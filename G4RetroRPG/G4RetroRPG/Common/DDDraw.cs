@@ -20,6 +20,7 @@ namespace Charlotte.Common
 		//
 		private class ExtraInfo
 		{
+			public DDTaskList TL = null;
 			public bool BlendInv = false;
 			public bool Mosaic = false;
 			public bool IntPos = false;
@@ -40,6 +41,14 @@ namespace Charlotte.Common
 		public static void Reset()
 		{
 			Extra = new ExtraInfo();
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		public static void SetTaskList(DDTaskList tl)
+		{
+			Extra.TL = tl;
 		}
 
 		//
@@ -221,7 +230,7 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private static void DrawPic(DDPicture picture, ILayoutInfo layout)
+		private static void DrawPic_Main(DDPicture picture, ILayoutInfo layout)
 		{
 			// app > @ enter DrawPic
 
@@ -380,6 +389,32 @@ namespace Charlotte.Common
 			// app > @ leave DrawPic
 
 			// < app
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
+		private static void DrawPic(DDPicture picture, ILayoutInfo layout)
+		{
+			if (Extra.TL == null)
+			{
+				DrawPic_Main(picture, layout);
+			}
+			else
+			{
+				ExtraInfo storedExtra = Extra;
+
+				Extra.TL.Add(() =>
+				{
+					ExtraInfo currExtra = Extra;
+
+					Extra = storedExtra;
+					DrawPic_Main(picture, layout);
+					Extra = currExtra;
+
+					return false;
+				});
+			}
 		}
 
 		//
