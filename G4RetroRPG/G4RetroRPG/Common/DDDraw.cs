@@ -181,19 +181,6 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private static FreeInfo FreeLayout = new FreeInfo();
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		private static RectInfo RectLayout = new RectInfo();
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		private static SimpleInfo SimpleLayout = new SimpleInfo();
-
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
 		private static void SetBlend(int mode, int pal)
 		{
 			if (DX.SetDrawBlendMode(mode, pal) != 0) // ? 失敗
@@ -422,16 +409,19 @@ namespace Charlotte.Common
 		//
 		public static void DrawFree(DDPicture picture, double ltx, double lty, double rtx, double rty, double rbx, double rby, double lbx, double lby)
 		{
-			FreeLayout.LTX = ltx;
-			FreeLayout.LTY = lty;
-			FreeLayout.RTX = rtx;
-			FreeLayout.RTY = rty;
-			FreeLayout.RBX = rbx;
-			FreeLayout.RBY = rby;
-			FreeLayout.LBX = lbx;
-			FreeLayout.LBY = lby;
+			FreeInfo layout = new FreeInfo()
+			{
+				LTX = ltx,
+				LTY = lty,
+				RTX = rtx,
+				RTY = rty,
+				RBX = rbx,
+				RBY = rby,
+				LBX = lbx,
+				LBY = lby,
+			};
 
-			DrawPic(picture, FreeLayout);
+			DrawPic(picture, layout);
 		}
 
 		//
@@ -463,12 +453,15 @@ namespace Charlotte.Common
 				)
 				throw new DDError();
 
-			RectLayout.L = l;
-			RectLayout.T = t;
-			RectLayout.R = r;
-			RectLayout.B = b;
+			RectInfo layout = new RectInfo()
+			{
+				L = l,
+				T = t,
+				R = r,
+				B = b,
+			};
 
-			DrawPic(picture, RectLayout);
+			DrawPic(picture, layout);
 		}
 
 		//
@@ -498,10 +491,13 @@ namespace Charlotte.Common
 				)
 				throw new DDError();
 
-			SimpleLayout.X = x;
-			SimpleLayout.Y = y;
+			SimpleInfo layout = new SimpleInfo()
+			{
+				X = x,
+				Y = y,
+			};
 
-			DrawPic(picture, SimpleLayout);
+			DrawPic(picture, layout);
 		}
 
 		//
@@ -529,6 +525,7 @@ namespace Charlotte.Common
 			public DDPicture Picture; // null == 無効
 			public double X;
 			public double Y;
+			public FreeInfo Layout;
 		}
 
 		//
@@ -570,15 +567,17 @@ namespace Charlotte.Common
 			DB.Picture = picture;
 			DB.X = x;
 			DB.Y = y;
-
-			FreeLayout.LTX = -w;
-			FreeLayout.LTY = -h;
-			FreeLayout.RTX = w;
-			FreeLayout.RTY = -h;
-			FreeLayout.RBX = w;
-			FreeLayout.RBY = h;
-			FreeLayout.LBX = -w;
-			FreeLayout.LBY = h;
+			DB.Layout = new FreeInfo()
+			{
+				LTX = -w,
+				LTY = -h,
+				RTX = w,
+				RTY = -h,
+				RBX = w,
+				RBY = h,
+				LBX = -w,
+				LBY = h,
+			};
 		}
 
 		//
@@ -589,14 +588,14 @@ namespace Charlotte.Common
 			if (DB.Picture == null)
 				throw new DDError();
 
-			FreeLayout.LTX += x;
-			FreeLayout.LTY += y;
-			FreeLayout.RTX += x;
-			FreeLayout.RTY += y;
-			FreeLayout.RBX += x;
-			FreeLayout.RBY += y;
-			FreeLayout.LBX += x;
-			FreeLayout.LBY += y;
+			DB.Layout.LTX += x;
+			DB.Layout.LTY += y;
+			DB.Layout.RTX += x;
+			DB.Layout.RTY += y;
+			DB.Layout.RBX += x;
+			DB.Layout.RBY += y;
+			DB.Layout.LBX += x;
+			DB.Layout.LBY += y;
 		}
 
 		//
@@ -607,10 +606,10 @@ namespace Charlotte.Common
 			if (DB.Picture == null)
 				throw new DDError();
 
-			DDUtils.Rotate(ref FreeLayout.LTX, ref FreeLayout.LTY, rot);
-			DDUtils.Rotate(ref FreeLayout.RTX, ref FreeLayout.RTY, rot);
-			DDUtils.Rotate(ref FreeLayout.RBX, ref FreeLayout.RBY, rot);
-			DDUtils.Rotate(ref FreeLayout.LBX, ref FreeLayout.LBY, rot);
+			DDUtils.Rotate(ref DB.Layout.LTX, ref DB.Layout.LTY, rot);
+			DDUtils.Rotate(ref DB.Layout.RTX, ref DB.Layout.RTY, rot);
+			DDUtils.Rotate(ref DB.Layout.RBX, ref DB.Layout.RBY, rot);
+			DDUtils.Rotate(ref DB.Layout.LBX, ref DB.Layout.LBY, rot);
 		}
 
 		//
@@ -621,10 +620,10 @@ namespace Charlotte.Common
 			if (DB.Picture == null)
 				throw new DDError();
 
-			FreeLayout.LTX *= z;
-			FreeLayout.RTX *= z;
-			FreeLayout.RBX *= z;
-			FreeLayout.LBX *= z;
+			DB.Layout.LTX *= z;
+			DB.Layout.RTX *= z;
+			DB.Layout.RBX *= z;
+			DB.Layout.LBX *= z;
 		}
 
 		//
@@ -635,10 +634,10 @@ namespace Charlotte.Common
 			if (DB.Picture == null)
 				throw new DDError();
 
-			FreeLayout.LTY *= z;
-			FreeLayout.RTY *= z;
-			FreeLayout.RBY *= z;
-			FreeLayout.LBY *= z;
+			DB.Layout.LTY *= z;
+			DB.Layout.RTY *= z;
+			DB.Layout.RBY *= z;
+			DB.Layout.LBY *= z;
 		}
 
 		//
@@ -660,10 +659,10 @@ namespace Charlotte.Common
 
 			w /= 2.0;
 
-			FreeLayout.LTX = -w;
-			FreeLayout.RTX = w;
-			FreeLayout.RBX = w;
-			FreeLayout.LBX = -w;
+			DB.Layout.LTX = -w;
+			DB.Layout.RTX = w;
+			DB.Layout.RBX = w;
+			DB.Layout.LBX = -w;
 		}
 
 		//
@@ -676,10 +675,10 @@ namespace Charlotte.Common
 
 			h /= 2.0;
 
-			FreeLayout.LTY = -h;
-			FreeLayout.RTY = -h;
-			FreeLayout.RBY = h;
-			FreeLayout.LBY = h;
+			DB.Layout.LTY = -h;
+			DB.Layout.RTY = -h;
+			DB.Layout.RBY = h;
+			DB.Layout.LBY = h;
 		}
 
 		//
@@ -699,16 +698,16 @@ namespace Charlotte.Common
 			if (DB.Picture == null)
 				throw new DDError();
 
-			FreeLayout.LTX += DB.X;
-			FreeLayout.LTY += DB.Y;
-			FreeLayout.RTX += DB.X;
-			FreeLayout.RTY += DB.Y;
-			FreeLayout.RBX += DB.X;
-			FreeLayout.RBY += DB.Y;
-			FreeLayout.LBX += DB.X;
-			FreeLayout.LBY += DB.Y;
+			DB.Layout.LTX += DB.X;
+			DB.Layout.LTY += DB.Y;
+			DB.Layout.RTX += DB.X;
+			DB.Layout.RTY += DB.Y;
+			DB.Layout.RBX += DB.X;
+			DB.Layout.RBY += DB.Y;
+			DB.Layout.LBX += DB.X;
+			DB.Layout.LBY += DB.Y;
 
-			DrawPic(DB.Picture, FreeLayout);
+			DrawPic(DB.Picture, DB.Layout);
 
 			DB.Picture = null;
 		}
