@@ -151,17 +151,17 @@ namespace Charlotte.Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public void Fire()
+		public void Fire(DDTaskList tl)
 		{
-			this.Fire(DDGround.EL);
+			tl.Add(this.GetTask());
 		}
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public void Fire(DDTaskList tl)
+		public void Fire()
 		{
-			tl.Add(this.GetTask());
+			this.Fire(DDGround.EL);
 		}
 	}
 }
