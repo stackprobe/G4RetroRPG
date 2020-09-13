@@ -7,6 +7,11 @@ C:\Factory\SubTools\makeDDResourceFile.exe ^
 	out\Resource.dat ^
 	C:\Factory\Program\MaskGZDataForDonut3\MaskGZData.exe
 
+C:\Factory\SubTools\makeDDResourceFile.exe ^
+	res ^
+	out\res.dat ^
+	C:\Factory\Program\MaskGZDataForDonut3\MaskGZData.exe
+
 C:\Factory\SubTools\CallConfuserCLI.exe G4RetroRPG\G4RetroRPG\bin\Release\G4RetroRPG.exe out\G4RetroRPG.exe
 rem COPY /B G4RetroRPG\G4RetroRPG\bin\Release\G4RetroRPG.exe out
 COPY /B G4RetroRPG\G4RetroRPG\bin\Release\Chocolate.dll out
